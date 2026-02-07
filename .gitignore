@@ -6,6 +6,7 @@ node_modules/
 .next*/
 *.next/
 out/
+.vercel/
 
 # local env files
 .env
@@ -27,3 +28,4 @@ pnpm-debug.log*
 verify-*.png
 current-*.png
 out-*.png
+.vercel

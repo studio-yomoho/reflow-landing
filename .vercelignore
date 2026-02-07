@@ -1,0 +1,15 @@
+.git
+.gitignore
+node_modules
+.next
+.next*
+out
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+verify-*.png
+current-*.png
+out-*.png
+
