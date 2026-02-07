@@ -3,7 +3,8 @@ node_modules/
 
 # next.js build artifacts
 .next/
-.next-*/
+.next*/
+*.next/
 out/
 
 # local env files
@@ -26,4 +27,3 @@ pnpm-debug.log*
 verify-*.png
 current-*.png
 out-*.png
-
