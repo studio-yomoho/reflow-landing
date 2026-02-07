@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #e6f1ff;
+  --bg-alt: #cee3ff;
+  --bg-soft: #01060d0d;
+  --line: #01060d26;
+  --text-primary: #01060d;
+  --brand: #0b74ff;
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: "Unbounded", "Inter", system-ui, sans-serif;
+  }
+}

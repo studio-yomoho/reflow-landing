@@ -1,0 +1,10 @@
+const distDir = String(process.env.NEXT_DIST_DIR || "").trim();
+
+/** @type {import('next').NextConfig} */
+const nextConfig = distDir
+  ? {
+      distDir
+    }
+  : {};
+
+export default nextConfig;

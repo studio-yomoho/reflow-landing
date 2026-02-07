@@ -1,0 +1,84 @@
+{
+  "fileKey": "",
+  "manifestOutput": "src/app/generated/figma-assets-manifest.json",
+  "assets": [
+    {
+      "slot": "imageHeroPreview",
+      "name": "Hero Preview",
+      "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10329-1663&t=HxeZkmysDFpAaptg-4",
+      "nodeUrlMobile": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10329-1671&t=HxeZkmysDFpAaptg-4",
+      "format": "png",
+      "scale": 2,
+      "output": "public/figma/hero-preview.png"
+    },
+    {
+      "slot": "imagePlatformsPreview",
+      "name": "Platforms Preview",
+      "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10299-1575&t=HxeZkmysDFpAaptg-4",
+      "nodeUrlMobile": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10329-1679&t=HxeZkmysDFpAaptg-4",
+      "format": "png",
+      "scale": 2,
+      "output": "public/figma/platforms-preview.png"
+    },
+    {
+      "slot": "imageProcessWebInterface",
+      "name": "Process Web Interface",
+      "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10303-1642&t=HxeZkmysDFpAaptg-4",
+      "nodeUrlMobile": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10329-1683&t=HxeZkmysDFpAaptg-4",
+      "format": "png",
+      "scale": 2,
+      "output": "public/figma/process-web-interface.png"
+    },
+    {
+      "slot": "imageProcessPlugin",
+      "name": "Process Plugin",
+      "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10307-1647&t=HxeZkmysDFpAaptg-4",
+      "nodeUrlMobile": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10329-1687&t=HxeZkmysDFpAaptg-4",
+      "format": "png",
+      "scale": 2,
+      "output": "public/figma/process-plugin.png"
+    },
+    {
+      "slot": "iconFeature1",
+      "name": "Feature Icon 1",
+      "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10299-1578&t=HxeZkmysDFpAaptg-4",
+      "format": "svg",
+      "output": "public/figma/icons/feature-1.svg"
+    },
+    {
+      "slot": "iconFeature2",
+      "name": "Feature Icon 2",
+      "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10299-1583&t=HxeZkmysDFpAaptg-4",
+      "format": "svg",
+      "output": "public/figma/icons/feature-2.svg"
+    },
+    {
+      "slot": "iconFeature3",
+      "name": "Feature Icon 3",
+      "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10299-1590&t=HxeZkmysDFpAaptg-4",
+      "format": "svg",
+      "output": "public/figma/icons/feature-3.svg"
+    },
+    {
+      "slot": "iconFaqChevron",
+      "name": "FAQ Chevron",
+      "nodeUrl": "",
+      "format": "svg",
+      "output": "public/figma/icons/faq-chevron.svg"
+    },
+    {
+      "slot": "iconBurger",
+      "name": "Mobile Burger",
+      "nodeUrl": "",
+      "format": "svg",
+      "output": "public/figma/icons/burger.svg"
+    },
+    {
+      "slot": "iconClose",
+      "name": "Close Icon",
+      "nodeUrl": "",
+      "format": "svg",
+      "output": "public/figma/icons/close.svg"
+    }
+  ]
+}
