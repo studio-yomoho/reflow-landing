@@ -13,6 +13,7 @@ type SiteHeaderProps = {
   navItems: SiteHeaderNavItem[];
   brandName?: string;
   loginLabel?: string;
+  loginHref?: string;
 };
 
 function BurgerIcon() {
@@ -55,13 +56,16 @@ function scrollToAnchor(hash: string) {
 export default function SiteHeader({
   navItems,
   brandName = "Reflow",
-  loginLabel = "Вход"
+  loginLabel = "Вход",
+  loginHref = "https://www.reflowapp.pro/auth/sign-in"
 }: SiteHeaderProps) {
   const container = "mx-auto w-full max-w-[1360px] px-4 sm:px-8 lg:px-[48px]";
   const easeClass = UI_MOTION.easingClass;
   const durationFastClass = UI_MOTION.durationClass.fast;
   const durationMediumClass = UI_MOTION.durationClass.medium;
   const durationSlowClass = UI_MOTION.durationClass.slow;
+  const buttonDurationClass = UI_MOTION.button.durationClass;
+  const buttonHoverScaleDownClass = UI_MOTION.button.hoverScaleDownClass;
   const lastScrollYRef = useRef(0);
   const upwardDistanceRef = useRef(0);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -172,11 +176,12 @@ export default function SiteHeader({
             </nav>
 
             <div className="flex min-w-0 flex-1 justify-end">
-              <button
-                className={`hidden rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-2 text-[16px] font-medium leading-[1.5] text-white transition-transform ${durationMediumClass} ${easeClass} hover:scale-[1.02] sm:px-5 sm:text-[18px] md:inline-flex`}
+              <a
+                href={loginHref}
+                className={`hidden rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-2 text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-5 sm:text-[18px] md:inline-flex`}
               >
                 {loginLabel}
-              </button>
+              </a>
               <button
                 className={`inline-flex h-10 w-10 items-center justify-center rounded-[8px] border border-[#01060d26] bg-white/80 text-[#01060d] transition-colors ${durationMediumClass} ${easeClass} hover:bg-white md:hidden`}
                 aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
@@ -215,11 +220,12 @@ export default function SiteHeader({
             </a>
           ))}
         </nav>
-        <button
-          className={`mt-4 inline-flex w-full items-center justify-center rounded-[8px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-3 text-[16px] font-medium leading-[1.5] text-white transition-transform ${durationFastClass} ${easeClass} hover:scale-[1.01]`}
+        <a
+          href={loginHref}
+          className={`mt-4 inline-flex w-full items-center justify-center rounded-[8px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-3 text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass}`}
         >
           {loginLabel}
-        </button>
+        </a>
       </div>
     </>
   );

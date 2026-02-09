@@ -5,6 +5,16 @@ export const UI_MOTION = {
     medium: "duration-300",
     slow: "duration-500"
   },
+  button: {
+    durationClass: "duration-400",
+    hoverScaleDownClass: "hover:scale-[0.97]"
+  },
+  link: {
+    transitionClass: "transition-[color,text-decoration-color]",
+    footerUnderlineColorClass: "decoration-[#01060d80]",
+    footerUnderlineThicknessClass: "decoration-[1px]",
+    footerHoverUnderlineColorClass: "hover:decoration-[#0b74ff]"
+  },
   header: {
     alwaysShowAtTopY: 30,
     hideAfterY: 90,
