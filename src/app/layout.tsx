@@ -1,4 +1,19 @@
 import "./globals.css";
+import { Inter, Unbounded } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap"
+});
+
+const unbounded = Unbounded({
+  subsets: ["latin", "cyrillic"],
+  weight: ["700", "800", "900"],
+  variable: "--font-unbounded",
+  display: "swap"
+});
 
 export const metadata = {
   title: "Reflow Landing",
@@ -11,15 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className="h-full">
+    <html lang="ru" className={`${inter.variable} ${unbounded.variable} h-full`}>
       <head>
         <meta
           name="format-detection"
           content="telephone=no, date=no, email=no, address=no"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@700;800;900&display=swap"
-          rel="stylesheet"
         />
       </head>
       <body className="h-full">{children}</body>

@@ -1,4 +1,5 @@
 import { applyRussianNbspToNode } from "../../lib/typography";
+import { UI_MOTION } from "../../config/motion";
 
 type SiteFooterProps = {
   brandName?: string;
@@ -13,7 +14,7 @@ type SiteFooterProps = {
 
 export default function SiteFooter({
   brandName = "Reflow",
-  supportEmail = "support@reflow.ru",
+  supportEmail = "support@reflowapp.pro",
   supportPhone = "+7 (495) 123-45-67",
   companyShortName = "ООО «МЕДИА РЕСУРС»",
   companyInn = "7714457395",
@@ -32,8 +33,10 @@ export default function SiteFooter({
   const hasRequisitesBlock = hasCompanyShortName || hasCompanyInn || hasCompanyKpp;
 
   const container = "mx-auto w-full max-w-[1360px] px-4 sm:px-8 lg:px-[48px]";
+  const easeClass = UI_MOTION.easingClass;
+  const durationMediumClass = UI_MOTION.durationClass.medium;
   const footerLinkClass =
-    "text-[16px] leading-[1.5] underline decoration-[#01060d66] decoration-2 underline-offset-4 transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-[#0b74ff]";
+    `text-[16px] leading-[1.5] underline ${UI_MOTION.link.footerUnderlineColorClass} ${UI_MOTION.link.footerUnderlineThicknessClass} underline-offset-4 ${UI_MOTION.link.transitionClass} ${durationMediumClass} ${easeClass} hover:text-[#0b74ff] ${UI_MOTION.link.footerHoverUnderlineColorClass}`;
 
   const content = (
     <footer className="overflow-hidden bg-[var(--bg-alt)] pb-20 pt-20 lg:pb-[80px] lg:pt-[80px]">

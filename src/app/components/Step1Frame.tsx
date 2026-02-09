@@ -93,6 +93,7 @@ const processCards = [
     text: "Публикуйтесь прямо из редактора Webflow. Одной кнопкой"
   }
 ];
+const SIGN_IN_URL = "https://www.reflowapp.pro/auth/sign-in";
 
 const WEBFLOW_LOGO_SCALE = 0.08830311894416809;
 const WEBFLOW_LOGO_PATHS = [
@@ -165,7 +166,9 @@ function FigmaAssetImage({
   fallback,
   parallax = false,
   parallaxMaxTranslate = UI_MOTION.parallax.defaultMaxTranslate,
-  parallaxScale = scaleFromPercent(UI_MOTION.parallax.defaultImageScalePercent)
+  parallaxScale = scaleFromPercent(UI_MOTION.parallax.defaultImageScalePercent),
+  loading = "lazy",
+  fetchPriority = "auto"
 }: {
   slot: BaseFigmaSlotName;
   alt: string;
@@ -174,6 +177,8 @@ function FigmaAssetImage({
   parallax?: boolean;
   parallaxMaxTranslate?: number;
   parallaxScale?: number;
+  loading?: "eager" | "lazy";
+  fetchPriority?: "auto" | "high" | "low";
 }) {
   const [hasError, setHasError] = useState(false);
   const desktopSrc = getFigmaSrc(slot);
@@ -286,7 +291,8 @@ function FigmaAssetImage({
             alt={alt}
             className={className}
             onError={() => setHasError(true)}
-            loading="lazy"
+            loading={loading}
+            fetchPriority={fetchPriority}
             decoding="async"
             style={parallaxBaseStyle}
           />
@@ -298,7 +304,8 @@ function FigmaAssetImage({
           alt={alt}
           className={className}
           onError={() => setHasError(true)}
-          loading="lazy"
+          loading={loading}
+          fetchPriority={fetchPriority}
           decoding="async"
           style={parallaxBaseStyle}
         />
@@ -521,11 +528,24 @@ export default function Step1Frame({
   const durationFastClass = UI_MOTION.durationClass.fast;
   const durationMediumClass = UI_MOTION.durationClass.medium;
   const durationSlowClass = UI_MOTION.durationClass.slow;
+  const buttonDurationClass = UI_MOTION.button.durationClass;
+  const buttonHoverScaleDownClass = UI_MOTION.button.hoverScaleDownClass;
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isVideoMounted, setIsVideoMounted] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const modalTransitionMs = 320;
+
+  const openVideoModal = () => {
+    setIsVideoMounted(true);
+    requestAnimationFrame(() => setIsVideoOpen(true));
+  };
+
+  const closeVideoModal = () => {
+    setIsVideoOpen(false);
+  };
 
   useEffect(() => {
-    if (isVideoOpen) {
+    if (isVideoMounted) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -534,12 +554,24 @@ export default function Step1Frame({
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isVideoOpen]);
+  }, [isVideoMounted]);
+
+  useEffect(() => {
+    if (isVideoOpen || !isVideoMounted) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setIsVideoMounted(false);
+    }, modalTransitionMs);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [isVideoOpen, isVideoMounted, modalTransitionMs]);
 
   useEffect(() => {
     const onEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setIsVideoOpen(false);
+        closeVideoModal();
       }
     };
 
@@ -551,19 +583,19 @@ export default function Step1Frame({
     <div id="top" className="overflow-x-hidden bg-[var(--bg-primary)] pt-[72px] text-[var(--text-primary)]">
       <SiteHeader navItems={homeNavItems} brandName={siteTextValues.brandName} />
 
-      {isVideoOpen && (
+      {isVideoMounted && (
         <div
-          className={`fixed inset-0 z-[60] flex items-center justify-center bg-[#01060dcc] p-4 transition-all ${durationMediumClass} ${easeClass}`}
-          onClick={() => setIsVideoOpen(false)}
+          className={`fixed inset-0 z-[60] flex items-center justify-center bg-[#01060dcc] p-4 transition-opacity ${durationMediumClass} ${easeClass} ${isVideoOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
+          onClick={closeVideoModal}
         >
           <div
-            className={`w-full max-w-[960px] rounded-[24px] border border-[#ffffff26] bg-[#0d1626] p-3 shadow-[0_30px_50px_rgba(1,6,13,0.5)] transition-all ${durationMediumClass} ${easeClass} sm:p-4`}
+            className={`w-full max-w-[960px] rounded-[24px] border border-[#ffffff26] bg-[#0d1626] p-3 shadow-[0_30px_50px_rgba(1,6,13,0.5)] transition-all ${durationMediumClass} ${easeClass} ${isVideoOpen ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"} sm:p-4`}
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-end sm:mb-4">
               <button
                 className={`inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-[#ffffff26] bg-[#ffffff14] text-white transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#ffffff26]`}
-                onClick={() => setIsVideoOpen(false)}
+                onClick={closeVideoModal}
                 aria-label="Закрыть видео"
               >
                 <CloseIcon />
@@ -602,17 +634,17 @@ export default function Step1Frame({
               </div>
 
               <div className="relative z-[2] flex flex-wrap justify-center gap-3 sm:gap-4">
-                <button
-                  type="button"
-                  className={`rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-5 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${durationMediumClass} ${easeClass} hover:scale-[1.02] sm:px-6 sm:text-[18px]`}
+                <a
+                  href={SIGN_IN_URL}
+                  className={`rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-5 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-6 sm:text-[18px]`}
                 >
                   Попробовать
-                </button>
+                </a>
                 <button
                   type="button"
                   className={`rounded-[6px] border border-transparent bg-[#01060d0d] px-5 py-[10px] text-[16px] font-medium leading-[1.5] transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#01060d14] sm:px-6 sm:text-[18px]`}
-                  onClick={() => setIsVideoOpen(true)}
-                  onTouchEnd={() => setIsVideoOpen(true)}
+                  onClick={openVideoModal}
+                  onTouchEnd={openVideoModal}
                 >
                   Как это работает
                 </button>
@@ -625,6 +657,8 @@ export default function Step1Frame({
                   slot="imageHeroPreview"
                   alt="Preview"
                   className={`h-full w-full object-cover will-change-transform transition-transform ${durationSlowClass} ${easeClass}`}
+                  loading="eager"
+                  fetchPriority="high"
                   parallax
                   parallaxMaxTranslate={UI_MOTION.parallax.heroMaxTranslate}
                   parallaxScale={scaleFromPercent(UI_MOTION.parallax.heroImageScalePercent)}
@@ -826,7 +860,7 @@ export default function Step1Frame({
                       {[
                         "Один активный проект",
                         "Плагин для Webflow",
-                        "Можно не платить за Site-plan",
+                        "Простое подключение без лишних шагов",
                         "Работает с CMS"
                       ].map((item) => (
                         <li key={item} className="flex items-center gap-4">
@@ -863,7 +897,7 @@ export default function Step1Frame({
                     </div>
 
                     <ul className="flex w-full flex-col gap-4 pt-2">
-                      {["Все, что в Базовом", "Приоритетная поддержка"].map((item) => (
+                      {["Все, что в Базовом", "Фиксируем стоимость на год"].map((item) => (
                         <li key={item} className="flex items-center gap-4">
                           <span className="inline-flex h-6 w-6 items-center justify-center text-[14px] text-[#0b74ff]">
                             ✓
@@ -877,9 +911,12 @@ export default function Step1Frame({
               </div>
 
               <div className="flex justify-center">
-                <button className="rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white sm:text-[18px]">
+                <a
+                  href={SIGN_IN_URL}
+                  className={`rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
+                >
                   Подключиться сейчас
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -939,18 +976,6 @@ export default function Step1Frame({
               })}
             </div>
 
-            <div className="flex w-full max-w-[768px] flex-col items-center gap-6 text-center">
-              <div className="flex flex-col items-center gap-4">
-                <h3 className="font-display text-[34px] font-bold leading-[1.25] tracking-[-0.01em] break-words sm:text-[40px]">
-                  Есть ли возвраты?
-                </h3>
-                <p className="text-[18px] leading-[1.5] break-words sm:text-[20px]">
-                  Да, мы предлагаем возврат средств в соответствии с&nbsp;нашей
-                  политикой. Подробности смотрите в разделе возвратов. Свяжитесь с
-                  поддержкой для оформления.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

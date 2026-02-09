@@ -43,7 +43,7 @@ export function applyPlaceholders(
 export function deriveSiteTextValues(values: PlaceholderMap = placeholderValues): SiteTextValues {
   return {
     brandName: getPlaceholderValue("[НАЗВАНИЕ СЕРВИСА]", "Reflow", values),
-    supportEmail: getPlaceholderValue("[EMAIL ПОДДЕРЖКИ]", "support@reflow.ru", values),
+    supportEmail: getPlaceholderValue("[EMAIL ПОДДЕРЖКИ]", "support@reflowapp.pro", values),
     supportPhone: getPlaceholderValue("[ТЕЛЕФОН ПОДДЕРЖКИ]", "+7 (495) 123-45-67", values),
     companyShortName: getPlaceholderValue(
       "[КОРОТКОЕ НАЗВАНИЕ ОРГАНИЗАЦИИ]",
