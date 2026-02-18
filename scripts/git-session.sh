@@ -30,12 +30,72 @@ require_git_repo() {
   git rev-parse --is-inside-work-tree >/dev/null
 }
 
-ensure_clean_worktree_for_start() {
-  if [[ -n "$(git status --porcelain)" ]]; then
-    echo "[session] Working tree is not clean."
-    echo "[session] Commit/stash changes before creating a new branch."
-    exit 1
+prepare_worktree_for_start() {
+  if [[ -z "$(git status --porcelain)" ]]; then
+    return
   fi
+
+  echo "[session] Working tree is not clean."
+  echo "[session] Current local changes:"
+  echo "[session] > git status --short"
+  git status --short
+  echo ""
+  echo "[session] > git --no-pager diff"
+  git --no-pager diff || true
+  echo ""
+
+  while true; do
+    echo "[session] Choose how to handle local changes before Start Session:"
+    echo "[session] 1) Commit and continue  - сохранить изменения в текущей ветке (git commit)"
+    echo "[session] 2) Stash and continue   - временно убрать изменения в stash (потом можно вернуть)"
+    echo "[session] 3) Discard local changes - полностью удалить локальные изменения и untracked файлы"
+    echo "[session] 4) Cancel               - ничего не менять и выйти из Start Session"
+    select action in \
+      "Commit and continue (save now)" \
+      "Stash and continue (save for later)" \
+      "Discard local changes (delete local edits)" \
+      "Cancel (exit without changes)"; do
+      case "${REPLY}" in
+        1)
+          git add -A
+          local commit_message
+          read -r -p "[session] Commit message: " commit_message
+          if [[ -z "${commit_message}" ]]; then
+            commit_message="wip: preserve local changes before start session"
+          fi
+          git commit -m "${commit_message}"
+          return
+          ;;
+        2)
+          local stash_message
+          read -r -p "[session] Stash message (default: wip-before-start-session): " stash_message
+          if [[ -z "${stash_message}" ]]; then
+            stash_message="wip-before-start-session"
+          fi
+          git stash push -u -m "${stash_message}"
+          return
+          ;;
+        3)
+          echo "[session] This will discard ALL local changes, including untracked files."
+          read -r -p "[session] Type DISCARD to confirm: " confirm_discard
+          if [[ "${confirm_discard}" == "DISCARD" ]]; then
+            git reset --hard HEAD
+            git clean -fd
+            return
+          fi
+          echo "[session] Discard cancelled."
+          break
+          ;;
+        4)
+          echo "[session] Start Session cancelled."
+          exit 1
+          ;;
+        *)
+          echo "[session] Invalid option."
+          ;;
+      esac
+    done
+  done
 }
 
 slugify() {
@@ -66,13 +126,13 @@ remote_https_base() {
 pick_branch_type() {
   local selected=""
   local options=("feat" "fix" "content" "refactor" "chore" "docs" "hotfix")
-  echo "[session] Select branch type:"
+  echo "[session] Select branch type:" >&2
   select opt in "${options[@]}"; do
     if [[ -n "${opt:-}" ]]; then
       selected="${opt}"
       break
     fi
-    echo "[session] Invalid option."
+    echo "[session] Invalid option." >&2
   done
   echo "${selected}"
 }
@@ -81,7 +141,7 @@ start_session() {
   local branch_type="${1:-}"
   local branch_name="${2:-}"
 
-  ensure_clean_worktree_for_start
+  prepare_worktree_for_start
 
   echo "[session] Fetching ${REMOTE_NAME}..."
   git fetch "${REMOTE_NAME}" --prune
@@ -91,7 +151,7 @@ start_session() {
   git pull --ff-only "${REMOTE_NAME}" main
 
   if [[ -z "${branch_type}" ]]; then
-    branch_type="$(pick_branch_type)"
+    branch_type="$(pick_branch_type | tr -d '[:space:]')"
   fi
 
   if [[ -z "${branch_name}" ]]; then

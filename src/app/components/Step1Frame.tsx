@@ -604,7 +604,7 @@ export default function Step1Frame({
             <div className="overflow-hidden rounded-[16px] border border-[#ffffff1f] bg-black">
               <div className="relative h-0 pb-[64.90384615384616%]">
                 <iframe
-                  src="https://www.loom.com/embed/22980268e5b1427e8d275730910a5fec"
+                  src="https://www.loom.com/embed/816fde410f384671892cabec285b7cf6"
                   frameBorder="0"
                   allowFullScreen
                   allow="fullscreen; picture-in-picture"
@@ -616,9 +616,9 @@ export default function Step1Frame({
         </div>
       )}
 
-      <section className="overflow-hidden pb-16 pt-20 lg:pb-[112px] lg:pt-[224px]">
-        <div className={container}>
-          <div className="flex flex-col items-center gap-10 lg:gap-20">
+      <section className="flex min-h-[max(100vh,760px)] items-center overflow-hidden py-10 sm:py-12 lg:py-16">
+        <div className={`${container} w-full`}>
+          <div className="flex w-full flex-col items-center gap-10 lg:gap-20">
             <div className="flex w-full max-w-[768px] flex-col items-center gap-8">
               <div className="flex w-full flex-col items-center gap-6">
                 <h1 className="text-center font-display text-[34px] font-bold leading-[1.1] tracking-[-0.01em] break-words sm:text-[48px] lg:text-[64px]">
