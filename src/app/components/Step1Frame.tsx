@@ -848,7 +848,7 @@ export default function Step1Frame({
                       </p>
                       <div className="flex w-full items-end justify-center gap-[6px]">
                         <span className="font-display text-[40px] font-bold leading-[1.2] tracking-[-0.01em] sm:text-[48px]">
-                          1 999 ₽
+                          {siteTextValues.pricingMonthlyRubDisplay}
                         </span>
                         <span className="font-display text-[26px] font-bold leading-[1.3] tracking-[-0.01em] opacity-30 sm:text-[32px]">
                           / мес
@@ -882,13 +882,13 @@ export default function Step1Frame({
                           Если на год
                         </p>
                         <span className="rounded-2xl border border-[#549dff] px-4 py-1 text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
-                          -20%
+                          -{siteTextValues.pricingAnnualDiscountPercent}%
                         </span>
                       </div>
 
                       <div className="flex w-full items-end justify-center gap-[6px]">
                         <span className="font-display text-[40px] font-bold leading-[1.2] tracking-[-0.01em] sm:text-[48px]">
-                          1 599 ₽
+                          {siteTextValues.pricingAnnualRubDisplay}
                         </span>
                         <span className="font-display text-[26px] font-bold leading-[1.3] tracking-[-0.01em] opacity-30 sm:text-[32px]">
                           / мес
