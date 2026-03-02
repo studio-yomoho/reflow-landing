@@ -10,6 +10,11 @@ export type SiteTextValues = {
   companyKpp: string;
   privacyLink: string;
   agreementLink: string;
+  pricingMonthlyRub: number;
+  pricingAnnualDiscountPercent: number;
+  pricingAnnualRub: number;
+  pricingMonthlyRubDisplay: string;
+  pricingAnnualRubDisplay: string;
 };
 
 export const placeholderValues: PlaceholderMap = placeholderValuesRaw as PlaceholderMap;
@@ -40,7 +45,39 @@ export function applyPlaceholders(
   return result;
 }
 
+function parseNumberFromPlaceholder(value: string, fallback: number): number {
+  if (typeof value !== "string" || value.trim().length === 0) {
+    return fallback;
+  }
+
+  const normalized = value.replace(",", ".").replace(/[^\d.]/g, "");
+  const parsed = Number(normalized);
+  if (!Number.isFinite(parsed)) {
+    return fallback;
+  }
+
+  return parsed;
+}
+
+function formatRub(value: number): string {
+  return `${new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 }).format(value)} ₽`;
+}
+
 export function deriveSiteTextValues(values: PlaceholderMap = placeholderValues): SiteTextValues {
+  const monthlyRubRaw = parseNumberFromPlaceholder(
+    getPlaceholderValue("[СТОИМОСТЬ ТАРИФА ЗА МЕСЯЦ]", "1999", values),
+    1999
+  );
+  const monthlyRub = Math.max(0, Math.round(monthlyRubRaw));
+
+  const discountPercentRaw = parseNumberFromPlaceholder(
+    getPlaceholderValue("[СКИДКА ЗА ГОД ПРОЦЕНТОВ]", "10", values),
+    10
+  );
+  const discountPercent = Math.max(0, Math.min(100, Math.round(discountPercentRaw)));
+
+  const annualRub = Math.max(0, Math.round(monthlyRub * (1 - discountPercent / 100)));
+
   return {
     brandName: getPlaceholderValue("[НАЗВАНИЕ СЕРВИСА]", "Reflow", values),
     supportEmail: getPlaceholderValue("[EMAIL ПОДДЕРЖКИ]", "support@reflowapp.pro", values),
@@ -57,6 +94,11 @@ export function deriveSiteTextValues(values: PlaceholderMap = placeholderValues)
       "/legal/privacy",
       values
     ),
-    agreementLink: getPlaceholderValue("[ССЫЛКА НА СТРАНИЦУ С СОГЛАШЕНИЕМ]", "/legal", values)
+    agreementLink: getPlaceholderValue("[ССЫЛКА НА СТРАНИЦУ С СОГЛАШЕНИЕМ]", "/legal", values),
+    pricingMonthlyRub: monthlyRub,
+    pricingAnnualDiscountPercent: discountPercent,
+    pricingAnnualRub: annualRub,
+    pricingMonthlyRubDisplay: formatRub(monthlyRub),
+    pricingAnnualRubDisplay: formatRub(annualRub)
   };
 }
