@@ -20,10 +20,11 @@
     "tunnel": "node ./scripts/tunnel-localhost-run.mjs",
     "figma:sync": "node ./scripts/figma-sync.mjs",
     "figma:watch": "node ./scripts/figma-watch.mjs",
+    "validate:assets": "node ./scripts/validate-static-assets.mjs",
     "vercel:link": "npx --yes vercel link",
     "deploy:preview": "npx --yes vercel deploy",
     "deploy:prod": "npx --yes vercel deploy --prod",
-    "build": "sh -c 'NEXT_DIST_DIR=${NEXT_DIST_DIR:-.next-build} next build'",
+    "build": "npm run -s validate:assets && sh -c 'NEXT_DIST_DIR=${NEXT_DIST_DIR:-.next-build} next build'",
     "start": "sh -c 'NEXT_DIST_DIR=${NEXT_DIST_DIR:-.next-build} next start -p ${APP_PORT:-3001}'",
     "lint": "next lint"
   },

@@ -20,13 +20,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reflowapp.pro"),
   title: "Reflow Landing",
   description: "Landing page generated from Pencil selection",
-  icons: {
-    icon: [
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icon.png", sizes: "256x256", type: "image/png" }
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
-  },
   openGraph: {
     title: "Reflow Landing",
     description: "Landing page generated from Pencil selection",
@@ -34,9 +27,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     images: [
       {
-        url: "/og.jpg",
-        width: 1200,
-        height: 630
+        url: "/og-image.png"
       }
     ]
   },
@@ -44,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Reflow Landing",
     description: "Landing page generated from Pencil selection",
-    images: ["/og.jpg"]
+    images: ["/og-image.png"]
   }
 };
 
