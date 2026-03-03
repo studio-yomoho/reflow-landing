@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { UI_MOTION } from "../../config/motion";
 import { applyRussianNbspToNode } from "../../lib/typography";
+import BrandLogo from "./BrandLogo";
 
 export type SiteHeaderNavItem = {
   label: string;
@@ -157,9 +158,7 @@ export default function SiteHeader({
         <div className={container}>
           <div className="flex h-[72px] items-center justify-between gap-6 lg:gap-8">
             <div className="min-w-0 flex-1">
-              <a href="/" className="font-display text-[19.81px] font-black leading-[1.3] tracking-[-0.04em]">
-                {brandName}
-              </a>
+              <BrandLogo brandName={brandName} href="/" />
             </div>
 
             <nav className="hidden items-center gap-8 md:flex">

@@ -85,17 +85,40 @@ const processCards = [
   {
     imageSlot: "imageProcessWebInterface" as const,
     title: "Веб-интерфейс",
-    text: "Регистрация, подключение домена, настройка DNS, оплата и публикация в несколько кликов"
+    text: "Регистрация, подключение домена, настройка DNS, оплата и публикация в несколько кликов",
+    loomUrl: "https://www.loom.com/share/21ca06dfe7a7403ca88b3bf10590b5b2"
   },
   {
     imageSlot: "imageProcessPlugin" as const,
     title: "Плагин",
-    text: "Публикуйтесь прямо из редактора Webflow. Одной кнопкой"
+    text: "Публикуйтесь прямо из редактора Webflow. Одной кнопкой",
+    loomUrl: "https://www.loom.com/share/04d04bc2ed144d3fbd11a010a226d859"
   }
 ];
 const SIGN_IN_URL = "https://www.reflowapp.pro/auth/sign-in";
+const HERO_LOOM_URL = "https://www.loom.com/share/816fde410f384671892cabec285b7cf6";
+
+function toLoomEmbedUrl(url: string) {
+  const normalized = String(url || "").trim();
+  if (!normalized) {
+    return "";
+  }
+
+  if (normalized.includes("/embed/")) {
+    return normalized;
+  }
+
+  const match = normalized.match(/loom\.com\/share\/([a-zA-Z0-9]+)/);
+  if (match?.[1]) {
+    return `https://www.loom.com/embed/${match[1]}`;
+  }
+
+  return normalized;
+}
 
 const WEBFLOW_LOGO_SCALE = 0.08830311894416809;
+const PROCESS_DEMO_ICON_PATH =
+  "M347.33002 553.73999l196.97998-125.89001c8.28668-5.38001 12.42999-12.61002 12.42999-21.69001 0-9.07333-4.14331-16.26333-12.42999-21.57l-196.97998-125.89002c-8.29334-5.81334-16.99668-6.24666-26.11002-1.29999-9.11334 4.95334-13.66998 12.59665-13.66998 22.93l0 251.54004c0 10.56665 4.55664 18.30664 13.66998 23.21997 9.11334 4.91333 17.81668 4.46337 26.11002-1.34998z m58.67999 258.45996c-55.64001 0-108.15335-10.62665-157.54001-31.88-49.38-21.25336-92.50999-50.31995-129.38999-87.19995-36.88-36.88001-65.94667-80-87.2-129.35999-21.25333-49.35999-31.88-101.86337-31.88001-157.51004 0-56.30667 10.62667-109.15335 31.88001-158.54001 21.25333-49.38 50.30666-92.34663 87.15999-128.89996 36.85334-36.56 79.96667-65.50001 129.34-86.82001 49.37333-21.32667 101.89002-31.98999 157.55002-31.98999 56.32001 0 109.18326 10.65664 158.58994 31.96997 49.40002 21.31333 92.37005 50.23669 128.91003 86.77002 36.54669 36.53333 65.47663 79.49335 86.78998 128.88001 21.32001 49.38665 31.97998 102.25329 31.97998 158.59997 0 55.66666-10.66333 108.19-31.98999 157.57001-21.32001 49.38-50.26001 92.5-86.82001 129.35998-36.55334 36.85999-79.51001 65.91663-128.86999 87.16999-49.35999 21.25335-102.19663 31.88-158.50995 31.88z m-0.03-68.13c94.02667 0 173.84329-32.91669 239.44998-98.75 65.59998-65.83997 98.39997-145.53998 98.39997-239.09998 0-94.02667-32.79999-173.84335-98.39997-239.45001-65.60669-65.6-145.46332-98.39996-239.56997-98.39997-93.44001 0-173.09002 32.79997-238.95002 98.39997-65.85333 65.60666-98.78 145.46335-98.78 239.57001 0 93.44 32.91667 173.09002 98.75 238.95001 65.84 65.85333 145.54001 98.77997 239.10001 98.77997z";
 const WEBFLOW_LOGO_PATHS = [
   {
     d: "M288.60599 0l-92.09099 180.02692-86.499 0 38.54-74.611-1.729 0c-31.795 41.27399-79.2339 68.445-146.827 74.611l0-73.578c0 0 43.24091-2.554 68.661-29.2799l-68.661 0 0-77.1676 77.1676 0 0 63.4692 1.732-0.0071 31.5334-63.4621 58.36 0 0 63.0668 1.73199-0.0028 32.71601-63.06542 85.36499 0z",
@@ -516,6 +539,14 @@ function HeroPlatformLogos() {
   );
 }
 
+function ProcessDemoIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-6 w-6 shrink-0" fill="none" aria-hidden>
+      <path d={PROCESS_DEMO_ICON_PATH} fill="#0f73ff" transform="scale(0.0295496)" />
+    </svg>
+  );
+}
+
 export default function Step1Frame({
   siteTextValues,
   faqItems
@@ -532,10 +563,12 @@ export default function Step1Frame({
   const buttonHoverScaleDownClass = UI_MOTION.button.hoverScaleDownClass;
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isVideoMounted, setIsVideoMounted] = useState(false);
+  const [activeVideoEmbedUrl, setActiveVideoEmbedUrl] = useState(toLoomEmbedUrl(HERO_LOOM_URL));
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const modalTransitionMs = 320;
 
-  const openVideoModal = () => {
+  const openVideoModal = (videoUrl = HERO_LOOM_URL) => {
+    setActiveVideoEmbedUrl(toLoomEmbedUrl(videoUrl));
     setIsVideoMounted(true);
     requestAnimationFrame(() => setIsVideoOpen(true));
   };
@@ -604,7 +637,7 @@ export default function Step1Frame({
             <div className="overflow-hidden rounded-[16px] border border-[#ffffff1f] bg-black">
               <div className="relative h-0 pb-[64.90384615384616%]">
                 <iframe
-                  src="https://www.loom.com/embed/816fde410f384671892cabec285b7cf6"
+                  src={activeVideoEmbedUrl}
                   frameBorder="0"
                   allowFullScreen
                   allow="fullscreen; picture-in-picture"
@@ -643,8 +676,8 @@ export default function Step1Frame({
                 <button
                   type="button"
                   className={`rounded-[6px] border border-transparent bg-[#01060d0d] px-5 py-[10px] text-[16px] font-medium leading-[1.5] transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#01060d14] sm:px-6 sm:text-[18px]`}
-                  onClick={openVideoModal}
-                  onTouchEnd={openVideoModal}
+                  onClick={() => openVideoModal(HERO_LOOM_URL)}
+                  onTouchEnd={() => openVideoModal(HERO_LOOM_URL)}
                 >
                   Как это работает
                 </button>
@@ -811,6 +844,19 @@ export default function Step1Frame({
                       </h3>
                       <p className="text-[16px] leading-[1.5] sm:text-[18px]">{card.text}</p>
                     </div>
+                    <button
+                      type="button"
+                      className="group inline-flex w-fit items-center gap-2 bg-transparent p-0 text-left text-[18px] font-medium leading-[1.5]"
+                      onClick={() => openVideoModal(card.loomUrl)}
+                      onTouchEnd={() => openVideoModal(card.loomUrl)}
+                    >
+                      <span
+                        className={`text-[#1172ff] transition-colors ${durationMediumClass} ${easeClass} group-hover:text-[#0b62dc]`}
+                      >
+                        Смотреть демку
+                      </span>
+                      <ProcessDemoIcon />
+                    </button>
                   </div>
                 </article>
               ))}
