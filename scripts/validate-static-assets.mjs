@@ -1,8 +1,17 @@
 import { access } from "node:fs/promises";
 import path from "node:path";
 
-const requiredFiles = ["src/app/icon.png", "src/app/apple-icon.png", "public/og-image.png"];
-const forbiddenFiles = ["public/icon.png", "public/apple-icon.png"];
+const requiredFiles = [
+  "public/figma/icons/site-icon.png",
+  "public/figma/icons/site-apple-icon.png",
+  "public/figma/og-image.png"
+];
+const forbiddenFiles = [
+  "src/app/icon.png",
+  "src/app/apple-icon.png",
+  "public/icon.png",
+  "public/apple-icon.png"
+];
 const cwd = process.cwd();
 const missing = [];
 const conflicting = [];
