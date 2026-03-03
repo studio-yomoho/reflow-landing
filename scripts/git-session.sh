@@ -30,23 +30,70 @@ require_git_repo() {
   git rev-parse --is-inside-work-tree >/dev/null
 }
 
+show_worktree_snapshot() {
+  echo "[session] Current local changes:"
+  echo "[session] > git status --short"
+  git status --short
+  echo ""
+
+  local untracked
+  untracked="$(git ls-files --others --exclude-standard)"
+  if [[ -n "${untracked}" ]]; then
+    echo "[session] New untracked files:"
+    echo "${untracked}"
+    echo ""
+  fi
+
+  echo "[session] > git --no-pager diff --stat"
+  git --no-pager diff --stat || true
+  echo ""
+}
+
+commit_all_changes() {
+  local context="${1:-session}"
+  local default_message="${2:-chore: update changes}"
+  local commit_message
+
+  git add -A
+
+  if [[ -z "$(git diff --cached --name-only)" ]]; then
+    echo "[session] ${context}: nothing to commit after staging."
+    return
+  fi
+
+  echo "[session] ${context}: staged files:"
+  git diff --cached --name-status
+  read -r -p "[session] Commit message (default: ${default_message}): " commit_message
+  if [[ -z "${commit_message}" ]]; then
+    commit_message="${default_message}"
+  fi
+  git commit -m "${commit_message}"
+}
+
+ensure_clean_worktree_before_push() {
+  local context="${1:-session}"
+  if [[ -z "$(git status --porcelain)" ]]; then
+    return
+  fi
+
+  echo "[session] ${context}: push aborted, working tree is not clean."
+  echo "[session] Uncommitted changes (including new files):"
+  git status --short
+  echo "[session] Commit/stash/discard changes, then retry."
+  exit 1
+}
+
 prepare_worktree_for_start() {
   if [[ -z "$(git status --porcelain)" ]]; then
     return
   fi
 
   echo "[session] Working tree is not clean."
-  echo "[session] Current local changes:"
-  echo "[session] > git status --short"
-  git status --short
-  echo ""
-  echo "[session] > git --no-pager diff"
-  git --no-pager diff || true
-  echo ""
+  show_worktree_snapshot
 
   while true; do
     echo "[session] Choose how to handle local changes before Start Session:"
-    echo "[session] 1) Commit and continue  - сохранить изменения в текущей ветке (git commit)"
+    echo "[session] 1) Commit and continue  - сохранить все изменения, включая новые файлы"
     echo "[session] 2) Stash and continue   - временно убрать изменения в stash (потом можно вернуть)"
     echo "[session] 3) Discard local changes - полностью удалить локальные изменения и untracked файлы"
     echo "[session] 4) Cancel               - ничего не менять и выйти из Start Session"
@@ -57,13 +104,7 @@ prepare_worktree_for_start() {
       "Cancel (exit without changes)"; do
       case "${REPLY}" in
         1)
-          git add -A
-          local commit_message
-          read -r -p "[session] Commit message: " commit_message
-          if [[ -z "${commit_message}" ]]; then
-            commit_message="wip: preserve local changes before start session"
-          fi
-          git commit -m "${commit_message}"
+          commit_all_changes "start" "wip: preserve local changes before start session"
           return
           ;;
         2)
@@ -206,16 +247,31 @@ finish_session() {
   npm run build
 
   if [[ -n "$(git status --porcelain)" ]]; then
-    read -r -p "[session] Commit current changes? [y/N]: " do_commit
-    if [[ "${do_commit:-}" =~ ^[Yy]$ ]]; then
-      git add -A
-      read -r -p "[session] Commit message: " commit_message
-      if [[ -z "${commit_message}" ]]; then
-        commit_message="chore: update ${current_branch}"
-      fi
-      git commit -m "${commit_message}"
-    fi
+    echo "[session] finish: working tree is not clean."
+    show_worktree_snapshot
+    while true; do
+      echo "[session] Choose action before finish push:"
+      select action in \
+        "Commit all changes and continue (recommended)" \
+        "Cancel finish"; do
+        case "${REPLY}" in
+          1)
+            commit_all_changes "finish" "chore: update ${current_branch}"
+            break 2
+            ;;
+          2)
+            echo "[session] Finish cancelled."
+            exit 1
+            ;;
+          *)
+            echo "[session] Invalid option."
+            ;;
+        esac
+      done
+    done
   fi
+
+  ensure_clean_worktree_before_push "finish"
 
   echo "[session] Pushing ${current_branch}..."
   git push -u "${REMOTE_NAME}" "${current_branch}"
@@ -254,6 +310,8 @@ handoff_session() {
   else
     echo "[session] No local changes to commit."
   fi
+
+  ensure_clean_worktree_before_push "handoff"
 
   echo "[session] Pushing ${current_branch}..."
   git push -u "${REMOTE_NAME}" "${current_branch}"
