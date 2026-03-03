@@ -1,5 +1,6 @@
 import { applyRussianNbspToNode } from "../../lib/typography";
 import { UI_MOTION } from "../../config/motion";
+import BrandLogo from "./BrandLogo";
 
 type SiteFooterProps = {
   brandName?: string;
@@ -45,9 +46,7 @@ export default function SiteFooter({
           <div className="rounded-[32px] bg-[var(--bg-primary)] p-8 sm:p-12">
             <div className="flex max-w-[680px] flex-col gap-8">
               {hasBrandName && (
-                <p className="font-display text-[19.81px] font-black leading-[1.3] tracking-[-0.04em]">
-                  {brandName}
-                </p>
+                <BrandLogo brandName={brandName} href="/" />
               )}
 
               <div className="flex flex-col gap-6">

@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter, Unbounded } from "next/font/google";
+import type { Metadata } from "next";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -15,9 +16,36 @@ const unbounded = Unbounded({
   display: "swap"
 });
 
-export const metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reflowapp.pro"),
   title: "Reflow Landing",
-  description: "Landing page generated from Pencil selection"
+  description: "Landing page generated from Pencil selection",
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "256x256", type: "image/png" }
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }]
+  },
+  openGraph: {
+    title: "Reflow Landing",
+    description: "Landing page generated from Pencil selection",
+    type: "website",
+    locale: "ru_RU",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Reflow Landing",
+    description: "Landing page generated from Pencil selection",
+    images: ["/og-image.png"]
+  }
 };
 
 export default function RootLayout({
