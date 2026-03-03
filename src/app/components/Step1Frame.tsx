@@ -654,6 +654,11 @@ export default function Step1Frame({
           <div className="flex w-full flex-col items-center gap-10 lg:gap-20">
             <div className="flex w-full max-w-[768px] flex-col items-center gap-8">
               <div className="flex w-full flex-col items-center gap-6">
+                <div className="inline-flex w-fit items-center justify-center rounded-2xl border border-[#549dff] px-4 py-1">
+                  <span className="text-center text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
+                    Пробный доступ на 3 дня!
+                  </span>
+                </div>
                 <h1 className="text-center font-display text-[34px] font-bold leading-[1.1] tracking-[-0.01em] break-words sm:text-[48px] lg:text-[64px]">
                   Деплой&nbsp;сайтов
                   <br />
@@ -961,7 +966,7 @@ export default function Step1Frame({
                   href={SIGN_IN_URL}
                   className={`rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
                 >
-                  Подключиться сейчас
+                  Попробовать бесплатно
                 </a>
               </div>
             </div>
