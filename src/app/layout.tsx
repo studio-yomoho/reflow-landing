@@ -16,8 +16,11 @@ const unbounded = Unbounded({
   display: "swap"
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reflowapp.pro";
+const OG_IMAGE_PATH = "/figma/og.jpg?v=20260303-1";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reflowapp.pro"),
+  metadataBase: new URL(SITE_URL),
   title: "Reflow Landing",
   description: "Landing page generated from Pencil selection",
   icons: {
@@ -27,15 +30,19 @@ export const metadata: Metadata = {
     ]
   },
   openGraph: {
+    url: SITE_URL,
+    siteName: "Reflow",
     title: "Reflow Landing",
     description: "Landing page generated from Pencil selection",
     type: "website",
     locale: "ru_RU",
     images: [
       {
-        url: "/figma/og.jpg",
+        url: OG_IMAGE_PATH,
         width: 1200,
-        height: 630
+        height: 630,
+        type: "image/jpeg",
+        alt: "Reflow Landing"
       }
     ]
   },
@@ -43,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Reflow Landing",
     description: "Landing page generated from Pencil selection",
-    images: ["/figma/og.jpg"]
+    images: [OG_IMAGE_PATH]
   }
 };
 
