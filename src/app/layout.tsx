@@ -21,8 +21,8 @@ const OG_IMAGE_PATH = "/figma/og.jpg?v=20260303-1";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Reflow Landing",
-  description: "Landing page generated from Pencil selection",
+  title: "Reflow — Webflow-сайты на RU-сервере в 1 клик!",
+  description: "100% доступность ваших Webflow-проектов для RU-пользователей",
   icons: {
     icon: [{ url: "/figma/icons/site-icon.png", sizes: "192x192", type: "image/png" }],
     apple: [
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   openGraph: {
     url: SITE_URL,
     siteName: "Reflow",
-    title: "Reflow Landing",
-    description: "Landing page generated from Pencil selection",
+    title: "Reflow — Webflow-сайты на RU-сервере в 1 клик!",
+    description: "100% доступность ваших Webflow-проектов для RU-пользователей",
     type: "website",
     locale: "ru_RU",
     images: [
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/jpeg",
-        alt: "Reflow Landing"
+        alt: "Reflow — Webflow-сайты на RU-сервере в 1 клик!"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reflow Landing",
-    description: "Landing page generated from Pencil selection",
+    title: "Reflow — Webflow-сайты на RU-сервере в 1 клик!",
+    description: "100% доступность ваших Webflow-проектов для RU-пользователей",
     images: [OG_IMAGE_PATH]
   }
 };
