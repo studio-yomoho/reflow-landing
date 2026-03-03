@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og.jpg",
         width: 1200,
         height: 630
       }
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Reflow Landing",
     description: "Landing page generated from Pencil selection",
-    images: ["/og-image.png"]
+    images: ["/og.jpg"]
   }
 };
 
