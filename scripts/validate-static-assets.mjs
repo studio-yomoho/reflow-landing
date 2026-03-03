@@ -4,7 +4,7 @@ import path from "node:path";
 const requiredFiles = [
   "public/figma/icons/site-icon.png",
   "public/figma/icons/site-apple-icon.png",
-  "public/figma/og-image.png"
+  "public/figma/og.jpg"
 ];
 const forbiddenFiles = [
   "src/app/icon.png",
