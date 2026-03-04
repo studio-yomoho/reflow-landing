@@ -17,12 +17,15 @@ const unbounded = Unbounded({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reflowapp.pro";
-const OG_IMAGE_PATH = "/figma/og.jpg?v=20260303-1";
+const OG_IMAGE_PATH = "/figma/og.jpg?v=20260304-1";
+const SITE_TITLE = "Reflow — Webflow без блокировок в России";
+const SITE_DESCRIPTION =
+  "Сервис публикации ваших Webflow сайтов в российский контур. 100% доступность, лучшая скорость, без VPN.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Reflow — Webflow-сайты на RU-сервере в 1 клик!",
-  description: "100% доступность ваших Webflow-проектов для RU-пользователей",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   icons: {
     icon: [{ url: "/figma/icons/site-icon.png", sizes: "192x192", type: "image/png" }],
     apple: [
@@ -32,8 +35,8 @@ export const metadata: Metadata = {
   openGraph: {
     url: SITE_URL,
     siteName: "Reflow",
-    title: "Reflow — Webflow-сайты на RU-сервере в 1 клик!",
-    description: "100% доступность ваших Webflow-проектов для RU-пользователей",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     type: "website",
     locale: "ru_RU",
     images: [
@@ -42,14 +45,14 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/jpeg",
-        alt: "Reflow — Webflow-сайты на RU-сервере в 1 клик!"
+        alt: SITE_TITLE
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reflow — Webflow-сайты на RU-сервере в 1 клик!",
-    description: "100% доступность ваших Webflow-проектов для RU-пользователей",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     images: [OG_IMAGE_PATH]
   }
 };
