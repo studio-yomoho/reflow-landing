@@ -7,6 +7,7 @@
   --line: #01060d26;
   --text-primary: #01060d;
   --brand: #0b74ff;
+  --app-vv-top: 0px;
 }
 
 @layer base {

@@ -18,6 +18,7 @@ export const UI_MOTION = {
   header: {
     alwaysShowAtTopY: 30,
     hideAfterY: 90,
+    hideOnDownwardOffset: 160,
     revealOnUpwardOffset: 30
   },
   parallax: {
@@ -35,6 +36,7 @@ export const UI_MOTION = {
     processCardImageScalePercent: 4
   },
   faq: {
+    durationClass: "duration-[800ms]",
     itemPadding: "px-4 py-4 sm:px-5 sm:py-5",
     hoverBgClass: "hover:bg-[#01060d08]",
     hoverRadiusClass: "hover:rounded-[14px]"

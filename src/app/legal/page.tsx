@@ -60,7 +60,7 @@ export default async function LegalPage() {
                   <a
                     key={section.id}
                     href={`#${section.id}`}
-                    className={`rounded-[10px] border border-[#549dff] bg-white/70 px-3 py-2 text-[14px] font-medium leading-[1.5] text-[#0b74ff] transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#dbeaff] sm:text-[15px]`}
+                    className={`rounded-[50px] border border-[#98c4ff] bg-white/70 px-3 py-2 text-[14px] font-medium leading-[1.5] text-[#0b74ff] transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#dbeaff] sm:text-[15px]`}
                   >
                     {section.label}
                   </a>
@@ -128,6 +128,7 @@ export default async function LegalPage() {
         brandName={siteTextValues.brandName}
         supportEmail={siteTextValues.supportEmail}
         supportPhone={siteTextValues.supportPhone}
+        socialLinks={siteTextValues.socialLinks}
         companyShortName={siteTextValues.companyShortName}
         companyInn={siteTextValues.companyInn}
         companyKpp={siteTextValues.companyKpp}
