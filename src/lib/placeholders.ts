@@ -1,10 +1,18 @@
 import placeholderValuesRaw from "../../content/placeholders.json";
 
 export type PlaceholderMap = Record<string, string>;
+export type SiteSocialLinks = {
+  telegram: string;
+  vk: string;
+  youtube: string;
+  instagram: string;
+  whatsapp: string;
+};
 export type SiteTextValues = {
   brandName: string;
   supportEmail: string;
   supportPhone: string;
+  socialLinks: SiteSocialLinks;
   companyShortName: string;
   companyInn: string;
   companyKpp: string;
@@ -82,6 +90,13 @@ export function deriveSiteTextValues(values: PlaceholderMap = placeholderValues)
     brandName: getPlaceholderValue("[НАЗВАНИЕ СЕРВИСА]", "Reflow", values),
     supportEmail: getPlaceholderValue("[EMAIL ПОДДЕРЖКИ]", "support@reflowapp.pro", values),
     supportPhone: getPlaceholderValue("[ТЕЛЕФОН ПОДДЕРЖКИ]", "+7 (495) 123-45-67", values),
+    socialLinks: {
+      telegram: getPlaceholderValue("[ССЫЛКА НА TELEGRAM]", "", values),
+      vk: getPlaceholderValue("[ССЫЛКА НА VK]", "", values),
+      youtube: getPlaceholderValue("[ССЫЛКА НА YOUTUBE]", "", values),
+      instagram: getPlaceholderValue("[ССЫЛКА НА INSTAGRAM]", "", values),
+      whatsapp: getPlaceholderValue("[ССЫЛКА НА WHATSAPP]", "", values)
+    },
     companyShortName: getPlaceholderValue(
       "[КОРОТКОЕ НАЗВАНИЕ ОРГАНИЗАЦИИ]",
       "ООО «МЕДИА РЕСУРС»",

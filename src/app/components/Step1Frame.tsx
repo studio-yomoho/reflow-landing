@@ -63,24 +63,6 @@ const homeNavItems: SiteHeaderNavItem[] = [
   { label: "Тарифы", href: "#pricing" }
 ];
 
-const featureItems = [
-  {
-    iconSlot: "iconFeature1" as const,
-    title: "Соответствие законам РФ",
-    text: "Reflow помогает выполнять рекомендацию РКН об отказе от Cloudflare CDN и защите ПДн"
-  },
-  {
-    iconSlot: "iconFeature2" as const,
-    title: "Доступность для\u00a0всех регионов",
-    text: "Ваш сайт в российском контуре — никаких VPN и блокировок. Скорость загрузки даже выше, чем была"
-  },
-  {
-    iconSlot: "iconFeature3" as const,
-    title: "Привычная разработка",
-    text: "В вашем процессе разработки не меняется ничего. Полный функционал. Публикация одной кнопкой"
-  }
-];
-
 const processCards = [
   {
     imageSlot: "imageProcessWebInterface" as const,
@@ -93,6 +75,24 @@ const processCards = [
     title: "Плагин",
     text: "Публикуйтесь прямо из редактора Webflow. Одной кнопкой",
     loomUrl: "https://www.loom.com/share/04d04bc2ed144d3fbd11a010a226d859"
+  }
+];
+
+const solutionItems = [
+  {
+    iconSlot: "iconFeature3" as const,
+    title: "Привычная разработка",
+    text: "В вашем процессе разработки не меняется ничего. Полный функционал. Публикация одной кнопкой"
+  },
+  {
+    iconSlot: "iconFeature2" as const,
+    title: "100% доступ для\u00a0России",
+    text: "Ваш сайт в российском контуре — никаких VPN и блокировок. Скорость загрузки даже выше, чем была"
+  },
+  {
+    iconSlot: "iconFeature1" as const,
+    title: "Соответствие законам РФ",
+    text: "Reflow помогает выполнять рекомендацию РКН об отказе от Cloudflare CDN и защите ПДн"
   }
 ];
 const SIGN_IN_URL = "https://www.reflowapp.pro/auth/sign-in";
@@ -390,56 +390,14 @@ function FigmaAssetIcon({
   );
 }
 
-function FeatureIconFallback({ index }: { index: number }) {
-  if (index === 0) {
-    return (
-      <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none" aria-hidden>
-        <path
-          d="M8 36L20 12L28 28L40 8"
-          stroke="#0b74ff"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-
-  if (index === 1) {
-    return (
-      <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none" aria-hidden>
-        <path
-          d="M10 34L18 10L30 24L38 14"
-          stroke="#0b74ff"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d="M12 38H36" stroke="#0b74ff" strokeWidth="3" strokeLinecap="round" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 48 48" className="h-12 w-12" fill="none" aria-hidden>
-      <path
-        d="M12 10H36V38H12V10Z"
-        stroke="#0b74ff"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-      <path d="M20 18V30" stroke="#0b74ff" strokeWidth="3" strokeLinecap="round" />
-      <path d="M28 18V30" stroke="#0b74ff" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function FeatureIcon({ index, slot }: { index: number; slot: BaseFigmaSlotName }) {
+function SolutionIcon({ slot }: { slot: BaseFigmaSlotName }) {
   return (
     <FigmaAssetIcon
       slot={slot}
       className="h-12 w-12 object-contain"
-      fallback={<FeatureIconFallback index={index} />}
+      fallback={
+        <span className="inline-flex h-12 w-12 rounded-xl border border-[#98c4ff] bg-[#0b74ff14]" />
+      }
     />
   );
 }
@@ -530,7 +488,7 @@ function HeroPlatformLogos() {
       </div>
 
       <div className="flex items-center self-center gap-2">
-        <div className="inline-flex items-center justify-center self-center rounded-2xl border border-[#549dff] px-2 py-1">
+        <div className="inline-flex items-center justify-center self-center rounded-2xl border border-[#98c4ff] px-2 py-1">
           <span className="text-[12px] font-semibold leading-none text-[#0b74ff]">Скоро!</span>
         </div>
         <FramerWordmark />
@@ -559,6 +517,7 @@ export default function Step1Frame({
   const durationFastClass = UI_MOTION.durationClass.fast;
   const durationMediumClass = UI_MOTION.durationClass.medium;
   const durationSlowClass = UI_MOTION.durationClass.slow;
+  const faqDurationClass = UI_MOTION.faq.durationClass;
   const buttonDurationClass = UI_MOTION.button.durationClass;
   const buttonHoverScaleDownClass = UI_MOTION.button.hoverScaleDownClass;
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -627,7 +586,7 @@ export default function Step1Frame({
           >
             <div className="mb-3 flex items-center justify-end sm:mb-4">
               <button
-                className={`inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-[#ffffff26] bg-[#ffffff14] text-white transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#ffffff26]`}
+                className={`inline-flex h-10 w-10 items-center justify-center rounded-[50px] border border-[#ffffff26] bg-[#ffffff14] text-white transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#ffffff26]`}
                 onClick={closeVideoModal}
                 aria-label="Закрыть видео"
               >
@@ -652,35 +611,35 @@ export default function Step1Frame({
       <section className="flex min-h-[max(100vh,760px)] items-center overflow-hidden py-10 sm:py-12 lg:py-16">
         <div className={`${container} w-full`}>
           <div className="flex w-full flex-col items-center gap-10 lg:gap-20">
-            <div className="flex w-full max-w-[768px] flex-col items-center gap-8">
+            <div className="flex w-full max-w-[922px] flex-col items-center gap-8">
               <div className="flex w-full flex-col items-center gap-6">
-                <div className="inline-flex w-fit items-center justify-center rounded-2xl border border-[#549dff] px-4 py-1">
+                <div className="inline-flex w-fit items-center justify-center rounded-2xl border border-[#98c4ff] px-4 py-1">
                   <span className="text-center text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
                     Пробный доступ на 3 дня!
                   </span>
                 </div>
                 <h1 className="text-center font-display text-[34px] font-bold leading-[1.1] tracking-[-0.01em] break-words sm:text-[48px] lg:text-[64px]">
-                  Деплой&nbsp;сайтов
+                  Сайт на Webflow
                   <br />
-                  на RU-сервер
+                  не&nbsp;грузится из РФ?
                 </h1>
                 <p className="text-center text-[16px] leading-[1.5] sm:text-[20px]">
-                  Разрабатываете на Webflow?
+                  Публикуйте сайт через Reflow — 100% доступ
                   <br />
-                  Публикуйте сайты для клиентов из России в 1 клик
+                  для пользователей из России. <strong>Без VPN и блокировок</strong>
                 </p>
               </div>
 
               <div className="relative z-[2] flex flex-wrap justify-center gap-3 sm:gap-4">
                 <a
                   href={SIGN_IN_URL}
-                  className={`rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-5 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-6 sm:text-[18px]`}
+                  className={`rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-5 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-6 sm:text-[18px]`}
                 >
                   Попробовать
                 </a>
                 <button
                   type="button"
-                  className={`rounded-[6px] border border-transparent bg-[#01060d0d] px-5 py-[10px] text-[16px] font-medium leading-[1.5] transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#01060d14] sm:px-6 sm:text-[18px]`}
+                  className={`rounded-[50px] border border-transparent bg-[#01060d0d] px-5 py-[10px] text-[16px] font-medium leading-[1.5] transition-colors ${durationMediumClass} ${easeClass} hover:bg-[#01060d14] sm:px-6 sm:text-[18px]`}
                   onClick={() => openVideoModal(HERO_LOOM_URL)}
                   onTouchEnd={() => openVideoModal(HERO_LOOM_URL)}
                 >
@@ -710,27 +669,139 @@ export default function Step1Frame({
         </div>
       </section>
 
-      <section id="process" className="scroll-mt-[92px] overflow-hidden py-14 lg:py-[112px]">
+      <section
+        id="process"
+        className="scroll-mt-[92px] overflow-hidden bg-[var(--bg-alt)] py-14 lg:py-[112px]"
+      >
         <div className={container}>
-          <div className="flex w-full flex-col gap-10 lg:gap-20">
-            <h2 className="max-w-[768px] whitespace-pre-line font-display text-[34px] font-bold leading-[1.2] tracking-[-0.01em] break-words sm:text-[40px] lg:text-[48px]">
-              Привычный флоу.
-              {"\n"}
-              Скорость. Доступность
-            </h2>
+          <div className="flex w-full flex-col gap-12">
+            <div className="flex max-w-[1000px] flex-col gap-4">
+              <div className="inline-flex w-fit rounded-2xl border border-[#98c4ff] px-4 py-1">
+                <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
+                  Проблема
+                </span>
+              </div>
+              <div className="flex flex-col gap-6">
+                <h2 className="font-display text-[27px] font-bold leading-[1.2] tracking-[-0.01em] break-words sm:text-[37px] lg:text-[48px]">
+                  Ваш сайт на Webflow в России? — Вам это знакомо...
+                </h2>
+                <p className="text-[16px] leading-[1.5] sm:text-[18px] lg:text-[20px]">
+                  Из-за новых ограничений РКН на технологию Cloudflare все сайты на Webflow
+                  открываются нестабильно или вовсе становятся недоступными для пользователей
+                  из России.
+                </p>
+              </div>
+            </div>
 
-            <div className="grid gap-8 lg:grid-cols-3">
-              {featureItems.map((item, index) => (
-                <article key={item.title} className="flex flex-col gap-6 pr-[3rem] sm:gap-8 sm:pr-0">
-                  <FeatureIcon index={index} slot={item.iconSlot} />
+            <div className="flex w-full flex-col">
+              <div className="grid gap-12 border-t border-[var(--line)] py-12 lg:grid-cols-2 lg:gap-[76.8px]">
+                <article className="flex flex-col gap-8 pr-[40px] lg:pr-[80px]">
+                  <p className="font-display text-[42px] font-bold leading-[1.2] tracking-[-0.01em] text-[#0b74ff] sm:text-[52px] lg:text-[60px]">
+                    01
+                  </p>
                   <div className="flex flex-col gap-4">
-                    <h3 className="font-display text-[26px] font-bold leading-[1.25] tracking-[-0.01em] break-words sm:text-[30px] lg:text-[32px]">
+                    <h3 className="font-display text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[27px] lg:text-[32px]">
+                      Клиенты жалуются, что «не грузится»
+                    </h3>
+                    <p className="text-[16px] leading-[1.5] sm:text-[17px] lg:text-[18px]">
+                      Недели разработки, правок и тестов. Вы запустили крутой проект, но
+                      пользователи не могут нормально с ним работать. Бизнес теряет трафик
+                    </p>
+                  </div>
+                </article>
+
+                <article className="flex flex-col gap-8 pr-[40px] lg:pr-[80px]">
+                  <p className="font-display text-[42px] font-bold leading-[1.2] tracking-[-0.01em] text-[#0b74ff] sm:text-[52px] lg:text-[60px]">
+                    02
+                  </p>
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-display text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[27px] lg:text-[32px]">
+                      Даже «c VPN» —скорость низкая
+                    </h3>
+                    <p className="text-[16px] leading-[1.5] sm:text-[17px] lg:text-[18px]">
+                      Даже при использовании VPN и других способов обхода блокировок — низкая
+                      скорость и нестабильность портит конверсии
+                    </p>
+                  </div>
+                </article>
+              </div>
+
+              <div className="grid gap-12 border-t border-[var(--line)] py-12 lg:grid-cols-2 lg:gap-[76.8px]">
+                <article className="flex flex-col gap-8 pr-[40px] lg:pr-[80px]">
+                  <p className="font-display text-[42px] font-bold leading-[1.2] tracking-[-0.01em] text-[#0b74ff] sm:text-[52px] lg:text-[60px]">
+                    03
+                  </p>
+                  <div className="flex flex-col gap-4">
+                    <h3 className="font-display text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[27px] lg:text-[32px]">
+                      Приходится использовать «костыли»
+                    </h3>
+                    <p className="text-[16px] leading-[1.5] sm:text-[17px] lg:text-[18px]">
+                      Заказчики выбирают Webflow за простоту в работе с контентом и удобные
+                      внутренние инструменты. Они не хотят ничего экспортировать руками и менять
+                      платформу
+                    </p>
+                  </div>
+                </article>
+
+                <article className="mt-10 mx-auto flex w-full flex-col items-center gap-8 rounded-[24px] bg-white px-0 py-6 text-center lg:mt-0 lg:items-stretch lg:rounded-none lg:bg-transparent lg:px-0 lg:py-0 lg:pr-[80px] lg:text-left">
+                  <div className="hidden h-[72px] w-[106px] lg:block" aria-hidden />
+                  <div className="flex flex-col items-center gap-8 lg:items-start">
+                    <h3 className="font-display whitespace-pre-line text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[27px] lg:text-[32px]">
+                      Reflow решит{"\n"}все 3 проблемы
+                    </h3>
+                    <div className="flex w-full justify-center lg:justify-start">
+                      <a
+                        href={SIGN_IN_URL}
+                        className={`inline-flex rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
+                      >
+                        Попробовать бесплатно
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden bg-[var(--bg-primary)] py-14 lg:py-[112px]">
+        <div className={container}>
+          <div className="flex w-full flex-col gap-14 lg:gap-20">
+            <div className="flex max-w-[768px] flex-col gap-[10px]">
+              <div className="inline-flex w-fit rounded-2xl border border-[#98c4ff] px-4 py-1">
+                <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
+                  Решение
+                </span>
+              </div>
+              <h2 className="font-display text-[30px] font-bold leading-[1.2] tracking-[-0.01em] break-words sm:text-[38px] lg:text-[48px]">
+                Публикуйте с Reflow. Забудьте о блокировках
+              </h2>
+            </div>
+
+            <div className="grid gap-8 lg:grid-cols-3 lg:gap-8">
+              {solutionItems.map((item) => (
+                <article key={item.title} className="flex flex-col gap-6">
+                  <SolutionIcon slot={item.iconSlot} />
+                  <div className="flex flex-col gap-4 pr-[40px]">
+                    <h3 className="font-display text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[28px] lg:text-[32px]">
                       {item.title}
                     </h3>
-                    <p className="text-[16px] leading-[1.5] sm:text-[18px]">{item.text}</p>
+                    <p className="text-[16px] leading-[1.5] sm:text-[17px] lg:text-[18px]">
+                      {item.text}
+                    </p>
                   </div>
                 </article>
               ))}
+            </div>
+
+            <div className="flex justify-center">
+              <a
+                href={SIGN_IN_URL}
+                className={`inline-flex rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
+              >
+                Попобробовать бесплатно
+              </a>
             </div>
           </div>
         </div>
@@ -741,7 +812,7 @@ export default function Step1Frame({
           <div className="flex w-full flex-col gap-10 lg:flex-row lg:gap-20">
             <div className="flex flex-1 flex-col gap-8">
               <div className="flex flex-col gap-4">
-                <div className="inline-flex w-fit rounded-2xl border border-[#549dff] px-4 py-1">
+                <div className="inline-flex w-fit rounded-2xl border border-[#98c4ff] px-4 py-1">
                   <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
                     Платформы
                   </span>
@@ -771,7 +842,7 @@ export default function Step1Frame({
                   </p>
                 </div>
 
-                <div className="flex flex-1 flex-col gap-4 rounded-3xl border border-[#549dff] p-4">
+                <div className="flex flex-1 flex-col gap-4 rounded-3xl border border-[#98c4ff] p-4">
                   <div className="flex h-6 items-center">
                     <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
                       Cкоро будет
@@ -785,7 +856,7 @@ export default function Step1Frame({
             </div>
 
             <div className="flex-1">
-              <div className="h-[374px] overflow-hidden rounded-[32px] border border-[var(--line)]">
+              <div className="relative h-[374px] overflow-hidden rounded-[32px]">
                 <FigmaAssetImage
                   slot="imagePlatformsPreview"
                   alt="Platforms preview"
@@ -795,6 +866,7 @@ export default function Step1Frame({
                   parallaxScale={scaleFromPercent(UI_MOTION.parallax.platformsImageScalePercent)}
                   fallback={<DottedSurface />}
                 />
+                <div className="pointer-events-none absolute inset-0 rounded-[32px] shadow-[inset_0_0_64px_rgba(1,6,13,0.08),inset_0_0_28px_rgba(1,6,13,0.04)]" />
               </div>
             </div>
           </div>
@@ -805,7 +877,7 @@ export default function Step1Frame({
         <div className={container}>
           <div className="flex flex-col items-center gap-20">
             <div className="flex max-w-[768px] flex-col items-center gap-4 text-center">
-              <div className="inline-flex rounded-2xl border border-[#549dff] px-4 py-1">
+              <div className="inline-flex rounded-2xl border border-[#98c4ff] px-4 py-1">
                 <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
                   Процесс
                 </span>
@@ -874,7 +946,7 @@ export default function Step1Frame({
         <div className={container}>
           <div className="flex flex-col items-center gap-20">
             <div className="flex max-w-[768px] flex-col items-center gap-4 text-center">
-              <div className="inline-flex rounded-2xl border border-[#549dff] px-4 py-1">
+              <div className="inline-flex rounded-2xl border border-[#98c4ff] px-4 py-1">
                 <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
                   Стоимость
                 </span>
@@ -932,7 +1004,7 @@ export default function Step1Frame({
                         <p className="text-center text-[24px] font-bold leading-[1.35] tracking-[-0.01em] sm:text-[26px]">
                           Если на год
                         </p>
-                        <span className="rounded-2xl border border-[#549dff] px-4 py-1 text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
+                        <span className="rounded-2xl border border-[#98c4ff] px-4 py-1 text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
                           -{siteTextValues.pricingAnnualDiscountPercent}%
                         </span>
                       </div>
@@ -964,7 +1036,7 @@ export default function Step1Frame({
               <div className="flex justify-center">
                 <a
                   href={SIGN_IN_URL}
-                  className={`rounded-[6px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
+                  className={`rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
                 >
                   Попробовать бесплатно
                 </a>
@@ -995,13 +1067,13 @@ export default function Step1Frame({
                       type="button"
                       aria-expanded={isOpen}
                       onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
-                      className={`flex w-full items-center gap-4 text-left transition-colors ${durationMediumClass} ${easeClass} ${UI_MOTION.faq.itemPadding} ${UI_MOTION.faq.hoverBgClass} ${UI_MOTION.faq.hoverRadiusClass} sm:gap-6`}
+                      className={`flex w-full items-center gap-4 text-left transition-colors ${faqDurationClass} ${easeClass} ${UI_MOTION.faq.itemPadding} ${UI_MOTION.faq.hoverBgClass} ${UI_MOTION.faq.hoverRadiusClass} sm:gap-6`}
                     >
                       <p className="min-w-0 flex-1 text-[18px] font-bold leading-[1.5] break-words sm:text-[20px]">
                         {item.q}
                       </p>
                       <span
-                        className={`inline-flex h-8 w-8 items-center justify-center transition-transform ${durationMediumClass} ${easeClass} ${
+                        className={`inline-flex h-8 w-8 items-center justify-center transition-transform ${faqDurationClass} ${easeClass} ${
                           isOpen ? "rotate-180" : "rotate-0"
                         }`}
                       >
@@ -1010,7 +1082,7 @@ export default function Step1Frame({
                     </button>
 
                     <div
-                      className={`grid overflow-hidden transition-[grid-template-rows,opacity] ${durationMediumClass} ${easeClass} ${
+                      className={`grid overflow-hidden transition-[grid-template-rows,opacity] ${faqDurationClass} ${easeClass} ${
                         isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                       }`}
                     >
@@ -1035,6 +1107,7 @@ export default function Step1Frame({
         brandName={siteTextValues.brandName}
         supportEmail={siteTextValues.supportEmail}
         supportPhone={siteTextValues.supportPhone}
+        socialLinks={siteTextValues.socialLinks}
         companyShortName={siteTextValues.companyShortName}
         companyInn={siteTextValues.companyInn}
         companyKpp={siteTextValues.companyKpp}
