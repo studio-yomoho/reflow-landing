@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { UI_MOTION } from "../../config/motion";
 import { applyRussianNbspToNode } from "../../lib/typography";
 import BrandLogo from "./BrandLogo";
+import { PressableLink } from "./PressableCta";
 
 export type SiteHeaderNavItem = {
   label: string;
@@ -209,12 +210,12 @@ export default function SiteHeader({
             </nav>
 
             <div className="flex min-w-0 flex-1 justify-end">
-              <a
+              <PressableLink
                 href={loginHref}
                 className={`hidden rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-2 text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-5 sm:text-[18px] md:inline-flex`}
               >
                 {loginLabel}
-              </a>
+              </PressableLink>
               <button
                 className={`inline-flex h-10 w-10 items-center justify-center rounded-[50px] border border-[#01060d26] bg-white/80 text-[#01060d] transition-colors ${durationMediumClass} ${easeClass} hover:bg-white md:hidden`}
                 aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
@@ -254,12 +255,12 @@ export default function SiteHeader({
             </a>
           ))}
         </nav>
-        <a
+        <PressableLink
           href={loginHref}
           className={`mt-4 inline-flex w-full items-center justify-center rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-3 text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass}`}
         >
           {loginLabel}
-        </a>
+        </PressableLink>
       </div>
     </>
   );

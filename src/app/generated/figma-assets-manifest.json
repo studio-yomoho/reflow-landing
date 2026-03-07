@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-04T17:42:35.292Z",
+  "generatedAt": "2026-03-06T15:47:29.131Z",
   "fileKey": "G1st1rc6W78q3uBkltP8pK",
   "slots": {
     "imageHeroPreview": {
@@ -8,7 +8,15 @@
       "format": "png",
       "width": 768,
       "height": 289,
-      "rev": 1772646154908
+      "rev": 1772648408461
+    },
+    "imageHeroPreviewMobile": {
+      "src": "/figma/hero-preview.mobile.png",
+      "nodeId": "10329:1671",
+      "format": "png",
+      "width": 457,
+      "height": 289,
+      "rev": 1772648408459
     },
     "imagePlatformsPreview": {
       "src": "/figma/platforms-preview.png",
@@ -16,7 +24,15 @@
       "format": "png",
       "width": 600,
       "height": 374,
-      "rev": 1772642757112
+      "rev": 1772648408466
+    },
+    "imagePlatformsPreviewMobile": {
+      "src": "/figma/platforms-preview.mobile.png",
+      "nodeId": "10329:1679",
+      "format": "png",
+      "width": 453,
+      "height": 447,
+      "rev": 1772648408463
     },
     "imageProcessWebInterface": {
       "src": "/figma/process-web-interface.png",
@@ -24,7 +40,15 @@
       "format": "png",
       "width": 210,
       "height": 320,
-      "rev": 1772641045306
+      "rev": 1772648408470
+    },
+    "imageProcessWebInterfaceMobile": {
+      "src": "/figma/process-web-interface.mobile.png",
+      "nodeId": "10329:1683",
+      "format": "png",
+      "width": 450,
+      "height": 231,
+      "rev": 1772648408469
     },
     "imageProcessPlugin": {
       "src": "/figma/process-plugin.png",
@@ -32,7 +56,23 @@
       "format": "png",
       "width": 210,
       "height": 320,
-      "rev": 1772641045675
+      "rev": 1772648408468
+    },
+    "imageProcessPluginMobile": {
+      "src": "/figma/process-plugin.mobile.png",
+      "nodeId": "10329:1687",
+      "format": "png",
+      "width": 450,
+      "height": 230,
+      "rev": 1772648408467
+    },
+    "imageStats55Card": {
+      "src": "/figma/stats-55-card.png",
+      "nodeId": "10476:41815",
+      "format": "png",
+      "width": 191,
+      "height": 149,
+      "rev": 1772812048448
     },
     "iconFeature1": {
       "src": "/figma/icons/feature-1.svg",
@@ -58,37 +98,13 @@
       "height": 48,
       "rev": 1770380616226
     },
-    "imageHeroPreviewMobile": {
-      "src": "/figma/hero-preview.mobile.png",
-      "nodeId": "10329:1671",
+    "imageStats55CardMobile": {
+      "src": "/figma/stats-55-card.png",
+      "nodeId": "10476:41815",
       "format": "png",
-      "width": 457,
-      "height": 289,
-      "rev": 1772646154887
-    },
-    "imagePlatformsPreviewMobile": {
-      "src": "/figma/platforms-preview.mobile.png",
-      "nodeId": "10329:1679",
-      "format": "png",
-      "width": 453,
-      "height": 447,
-      "rev": 1772642757113
-    },
-    "imageProcessWebInterfaceMobile": {
-      "src": "/figma/process-web-interface.mobile.png",
-      "nodeId": "10329:1683",
-      "format": "png",
-      "width": 450,
-      "height": 231,
-      "rev": 1772641045303
-    },
-    "imageProcessPluginMobile": {
-      "src": "/figma/process-plugin.mobile.png",
-      "nodeId": "10329:1687",
-      "format": "png",
-      "width": 450,
-      "height": 230,
-      "rev": 1772641045779
+      "width": 191,
+      "height": 149,
+      "rev": 1772812048448
     },
     "iconFeature1Mobile": {
       "src": "/figma/icons/feature-1.svg",

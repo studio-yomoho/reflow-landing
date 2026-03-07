@@ -39,6 +39,14 @@
       "output": "public/figma/process-plugin.png"
     },
     {
+      "slot": "imageStats55Card",
+      "name": "Stats 55 Card Image",
+      "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10476-41815&t=Pq5A3bpHS9pxQ63b-4",
+      "format": "png",
+      "scale": 2,
+      "output": "public/figma/stats-55-card.png"
+    },
+    {
       "slot": "iconFeature1",
       "name": "Feature Icon 1",
       "nodeUrl": "https://www.figma.com/design/G1st1rc6W78q3uBkltP8pK/reflow.relume?node-id=10299-1578&t=HxeZkmysDFpAaptg-4",
