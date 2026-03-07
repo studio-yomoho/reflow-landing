@@ -8,6 +8,33 @@
   --text-primary: #01060d;
   --brand: #0b74ff;
   --app-vv-top: 0px;
+
+  /* Phase 1: fluid token layer.
+     These tokens are intentionally not wired into UI yet.
+     They prepare a safe hybrid scaling system for step-by-step rollout. */
+  --fluid-scale: clamp(0.94, 0.9004 + 0.1626vw, 1.08);
+
+  --fluid-space-xs: clamp(0.5rem, 0.4695rem + 0.1252vw, 0.625rem);
+  --fluid-space-sm: clamp(0.75rem, 0.689rem + 0.2504vw, 1rem);
+  --fluid-space-md: clamp(1rem, 0.878rem + 0.5008vw, 1.5rem);
+  --fluid-space-lg: clamp(1.5rem, 1.2561rem + 1.0016vw, 2.5rem);
+  --fluid-space-xl: clamp(2rem, 1.5122rem + 2.0031vw, 4rem);
+  --fluid-space-2xl: clamp(3rem, 2.2683rem + 3.005vw, 6rem);
+
+  --fluid-radius-sm: clamp(0.75rem, 0.689rem + 0.2504vw, 1rem);
+  --fluid-radius-md: clamp(1rem, 0.878rem + 0.5008vw, 1.5rem);
+  --fluid-radius-lg: clamp(1.5rem, 1.2561rem + 1.0016vw, 2.5rem);
+  --fluid-radius-pill: clamp(2rem, 1.5122rem + 2.0031vw, 4rem);
+
+  --fluid-text-sm: clamp(0.875rem, 0.8445rem + 0.1252vw, 1rem);
+  --fluid-text-base: clamp(1rem, 0.9695rem + 0.1252vw, 1.125rem);
+  --fluid-text-lg: clamp(1.125rem, 1.064rem + 0.2504vw, 1.375rem);
+  --fluid-text-xl: clamp(1.375rem, 1.1616rem + 0.8764vw, 2.25rem);
+  --fluid-text-2xl: clamp(1.377rem, 1.0412rem + 1.379vw, 4rem);
+  --fluid-text-3xl: clamp(2.5rem, 1.7683rem + 3.005vw, 5.5rem);
+
+  --fluid-container-x: clamp(1rem, 0.6951rem + 1.252vw, 2.25rem);
+  --fluid-section-y: clamp(3.5rem, 2.6463rem + 3.5055vw, 7rem);
 }
 
 @layer base {
@@ -129,6 +156,18 @@
     animation-duration: 3.2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+  }
+}
+
+@media (max-width: 48rem) {
+  :root {
+    /* Mobile override: stronger fluid response between narrow widths
+       so 430 / 390 / 320 produce a visible typography change. */
+    --fluid-text-sm: clamp(0.75rem, 0.5893rem + 0.8036vw, 0.975rem);
+    --fluid-text-base: clamp(0.8125rem, 0.4911rem + 1.6071vw, 1.2625rem);
+    --fluid-text-lg: clamp(0.9375rem, 0.4554rem + 2.4107vw, 1.6125rem);
+    --fluid-text-xl: clamp(1.125rem, 0.3214rem + 4.0179vw, 2.25rem);
+    --fluid-text-2xl: clamp(1.125rem, -0.125rem + 6.25vw, 2.875rem);
   }
 }
 

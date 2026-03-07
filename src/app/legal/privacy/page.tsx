@@ -103,7 +103,7 @@ export default async function PrivacyPage() {
                   rehypePlugins={[rehypeRaw]}
                   components={{
                     h1: ({ children }) => (
-                      <h1 className="font-display text-[34px] font-bold leading-[1.1] tracking-[-0.01em] break-words sm:text-[48px] lg:text-[60px]">
+                      <h1 className="font-display text-[29px] font-bold leading-[1.1] tracking-[-0.01em] break-words sm:text-[48px] lg:text-[60px]">
                         {children}
                       </h1>
                     ),
@@ -115,14 +115,14 @@ export default async function PrivacyPage() {
                       return (
                         <h2
                           id={section?.id || fallbackId}
-                          className="scroll-mt-[96px] pt-3 font-display text-[28px] font-bold leading-[1.2] tracking-[-0.01em] break-words sm:text-[36px] lg:text-[42px]"
+                          className="scroll-mt-[96px] pt-3 font-display text-[20px] font-bold leading-[1.2] tracking-[-0.01em] break-words sm:text-[36px] lg:text-[42px]"
                         >
                           {children}
                         </h2>
                       );
                     },
                     h3: ({ children }) => (
-                      <h3 className="scroll-mt-[96px] pt-1 text-[22px] font-bold leading-[1.3] break-words sm:text-[26px]">
+                      <h3 className="scroll-mt-[96px] pt-1 text-[20px] font-bold leading-[1.3] break-words sm:text-[26px]">
                         {children}
                       </h3>
                     ),

@@ -14,8 +14,10 @@ export type SiteHeaderNavItem = {
 type SiteHeaderProps = {
   navItems: SiteHeaderNavItem[];
   brandName?: string;
-  loginLabel?: string;
-  loginHref?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
 };
 
 function BurgerIcon() {
@@ -58,8 +60,10 @@ function scrollToAnchor(hash: string) {
 export default function SiteHeader({
   navItems,
   brandName = "Reflow",
-  loginLabel = "Вход",
-  loginHref = "https://www.reflowapp.pro/auth/sign-in"
+  primaryLabel = "Попробовать",
+  primaryHref = "https://www.reflowapp.pro/auth/sign-up",
+  secondaryLabel = "Войти",
+  secondaryHref = "https://www.reflowapp.pro/auth/sign-in"
 }: SiteHeaderProps) {
   const container = "mx-auto w-full max-w-[1360px] px-4 sm:px-8 lg:px-[48px]";
   const easeClass = UI_MOTION.easingClass;
@@ -210,12 +214,20 @@ export default function SiteHeader({
             </nav>
 
             <div className="flex min-w-0 flex-1 justify-end">
-              <PressableLink
-                href={loginHref}
-                className={`hidden rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-2 text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-5 sm:text-[18px] md:inline-flex`}
-              >
-                {loginLabel}
-              </PressableLink>
+              <div className="hidden items-center gap-3 md:flex">
+                <PressableLink
+                  href={secondaryHref}
+                  className={`rounded-[50px] border border-transparent bg-[#01060d0d] px-4 py-2 text-[16px] font-medium leading-[1.5] text-[#01060d] transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-5 sm:text-[18px]`}
+                >
+                  {secondaryLabel}
+                </PressableLink>
+                <PressableLink
+                  href={primaryHref}
+                  className={`rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-2 text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-5 sm:text-[18px]`}
+                >
+                  {primaryLabel}
+                </PressableLink>
+              </div>
               <button
                 className={`inline-flex h-10 w-10 items-center justify-center rounded-[50px] border border-[#01060d26] bg-white/80 text-[#01060d] transition-colors ${durationMediumClass} ${easeClass} hover:bg-white md:hidden`}
                 aria-label={isMobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
@@ -255,12 +267,20 @@ export default function SiteHeader({
             </a>
           ))}
         </nav>
-        <PressableLink
-          href={loginHref}
-          className={`mt-4 inline-flex w-full items-center justify-center rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-3 text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass}`}
-        >
-          {loginLabel}
-        </PressableLink>
+        <div className="mt-4 flex flex-col gap-3">
+          <PressableLink
+            href={secondaryHref}
+            className={`inline-flex w-full items-center justify-center rounded-[50px] border border-transparent bg-[#01060d0d] px-4 py-3 text-[16px] font-medium leading-[1.5] text-[#01060d] transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass}`}
+          >
+            {secondaryLabel}
+          </PressableLink>
+          <PressableLink
+            href={primaryHref}
+            className={`inline-flex w-full items-center justify-center rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-4 py-3 text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass}`}
+          >
+            {primaryLabel}
+          </PressableLink>
+        </div>
       </div>
     </>
   );

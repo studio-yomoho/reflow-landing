@@ -45,34 +45,45 @@ export default function SiteFooter({
   const container = "mx-auto w-full max-w-[1360px] px-4 sm:px-8 lg:px-[48px]";
   const easeClass = UI_MOTION.easingClass;
   const durationMediumClass = UI_MOTION.durationClass.medium;
+  const footerBlockGap = "var(--fluid-space-lg)";
+  const footerCardRadius = "var(--fluid-radius-lg)";
+  const footerCardPadding = "clamp(1.5rem, 1.0122rem + 2.0031vw, 3.5rem)";
+  const footerInnerGap = "var(--fluid-space-lg)";
+  const footerMetaGap = "var(--fluid-space-md)";
+  const footerLabelFontSize = "var(--fluid-text-base)";
+  const footerBodyFontSize = "var(--fluid-text-base)";
+  const footerBottomGap = "var(--fluid-space-sm)";
   const footerLinkClass =
-    `text-[16px] leading-[1.5] underline ${UI_MOTION.link.footerUnderlineColorClass} ${UI_MOTION.link.footerUnderlineThicknessClass} underline-offset-4 ${UI_MOTION.link.transitionClass} ${durationMediumClass} ${easeClass} hover:text-[#0b74ff] ${UI_MOTION.link.footerHoverUnderlineColorClass}`;
+    `leading-[1.5] underline ${UI_MOTION.link.footerUnderlineColorClass} ${UI_MOTION.link.footerUnderlineThicknessClass} underline-offset-4 ${UI_MOTION.link.transitionClass} ${durationMediumClass} ${easeClass} hover:text-[#0b74ff] ${UI_MOTION.link.footerHoverUnderlineColorClass}`;
 
   const content = (
     <footer className={`overflow-hidden bg-[var(--bg-alt)] pb-20 lg:pb-[80px] ${topPaddingClass}`}>
       <div className={container}>
-        <div className="flex flex-col gap-8">
-          <div className="rounded-[32px] bg-[var(--bg-primary)] p-8 sm:p-12">
-            <div className="flex max-w-[680px] flex-col gap-8">
+        <div className="flex flex-col" style={{ gap: footerBlockGap }}>
+          <div
+            className="bg-[var(--bg-primary)]"
+            style={{ borderRadius: footerCardRadius, padding: footerCardPadding }}
+          >
+            <div className="flex max-w-[680px] flex-col" style={{ gap: footerInnerGap }}>
               {hasBrandName && (
                 <BrandLogo brandName={brandName} href="/" />
               )}
 
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col" style={{ gap: footerMetaGap }}>
                 <div className="flex flex-col gap-1">
-                  <p className="text-[16px] font-semibold leading-[1.5]">Адрес</p>
-                  <p className="text-[16px] leading-[1.5] break-words">
+                  <p className="font-semibold leading-[1.5]" style={{ fontSize: footerLabelFontSize }}>Адрес</p>
+                  <p className="leading-[1.5] break-words" style={{ fontSize: footerBodyFontSize }}>
                     125284, г. Москва, пр-кт Ленинградский, д. 31, стр. 3, помещ. 4
                   </p>
                 </div>
 
                 {hasContactBlock && (
                   <div className="flex flex-col gap-1">
-                    <p className="text-[16px] font-semibold leading-[1.5]">Контакт</p>
+                    <p className="font-semibold leading-[1.5]" style={{ fontSize: footerLabelFontSize }}>Контакт</p>
                     <div className="flex flex-col">
-                      {hasSupportPhone && <p className="text-[16px] leading-[1.5]">{supportPhone}</p>}
+                      {hasSupportPhone && <p className="leading-[1.5]" style={{ fontSize: footerBodyFontSize }}>{supportPhone}</p>}
                       {hasSupportEmail && (
-                        <p className="text-[16px] leading-[1.5] break-all">{supportEmail}</p>
+                        <p className="leading-[1.5] break-all" style={{ fontSize: footerBodyFontSize }}>{supportEmail}</p>
                       )}
                     </div>
                   </div>
@@ -80,13 +91,13 @@ export default function SiteFooter({
 
                 {hasRequisitesBlock && (
                   <div className="flex flex-col gap-1">
-                    <p className="text-[16px] font-semibold leading-[1.5]">Реквизиты</p>
+                    <p className="font-semibold leading-[1.5]" style={{ fontSize: footerLabelFontSize }}>Реквизиты</p>
                     <div className="flex flex-col">
                       {hasCompanyShortName && (
-                        <p className="text-[16px] leading-[1.5]">{companyShortName}</p>
+                        <p className="leading-[1.5]" style={{ fontSize: footerBodyFontSize }}>{companyShortName}</p>
                       )}
-                      {hasCompanyInn && <p className="text-[16px] leading-[1.5]">ИНН: {companyInn}</p>}
-                      {hasCompanyKpp && <p className="text-[16px] leading-[1.5]">КПП: {companyKpp}</p>}
+                      {hasCompanyInn && <p className="leading-[1.5]" style={{ fontSize: footerBodyFontSize }}>ИНН: {companyInn}</p>}
+                      {hasCompanyKpp && <p className="leading-[1.5]" style={{ fontSize: footerBodyFontSize }}>КПП: {companyKpp}</p>}
                     </div>
                   </div>
                 )}
@@ -108,14 +119,14 @@ export default function SiteFooter({
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col" style={{ gap: footerBottomGap }}>
             <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center sm:gap-16">
-              <p className="text-[16px] leading-[1.5]">© 2026 Reflow. Все права защищены.</p>
+              <p className="leading-[1.5]" style={{ fontSize: footerBodyFontSize }}>© 2026 Reflow. Все права защищены.</p>
               <div className="flex flex-wrap gap-4 sm:gap-6">
-                <a href={privacyLink} className={`${footerLinkClass} break-words`}>
+                <a href={privacyLink} className={`${footerLinkClass} break-words`} style={{ fontSize: footerBodyFontSize }}>
                   Политика конфиденциальности и cookies
                 </a>
-                <a href={agreementLink} className={footerLinkClass}>
+                <a href={agreementLink} className={footerLinkClass} style={{ fontSize: footerBodyFontSize }}>
                   Договор-оферта
                 </a>
               </div>

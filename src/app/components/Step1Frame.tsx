@@ -115,7 +115,7 @@ const solutionItems = [
     text: "С Reflow вы не используете Cloudflare и не передаете ПДн зарубеж"
   }
 ];
-const SIGN_IN_URL = "https://www.reflowapp.pro/auth/sign-in";
+const SIGN_UP_URL = "https://www.reflowapp.pro/auth/sign-up";
 const SUPPORT_TELEGRAM_URL = "https://t.me/+Eunyahnhp8UzMGQy";
 const HERO_LOOM_URL = "https://www.loom.com/share/816fde410f384671892cabec285b7cf6";
 const SHOW_PLATFORMS_BLOCK = false;
@@ -757,33 +757,52 @@ function HeroAlternative({
   heroFeatureItems: HeroFeatureCarouselItem[];
   onOpenVideo: () => void;
 }) {
+  const heroSectionGap = "clamp(4.5rem, 3.7683rem + 3.005vw, 7.5rem)";
+  const heroContentGap = "var(--fluid-space-lg)";
+  const heroBadgeRowGap = "var(--fluid-space-xs)";
+  const heroHeadingFontSize = "clamp(1.5rem, -0.0714rem + 7.8571vw, 4rem)";
+  const heroBodyFontSize = "var(--fluid-text-lg)";
+  const heroChipFontSize = "var(--fluid-text-sm)";
+
   return (
     <section className="flex min-h-[calc(100dvh-72px)] items-center justify-center overflow-hidden py-0 sm:min-h-[max(100vh,760px)] sm:pt-[40px] sm:pb-12 lg:pb-16">
       <div className={`${container} w-full`}>
-        <div className="flex w-full flex-col items-center gap-[72.8px] lg:gap-[123.2px]">
-          <div className="flex w-full max-w-[820px] flex-col items-center gap-8">
-            <div className="flex w-full flex-col items-center gap-6">
-              <div className="flex flex-wrap items-center justify-center gap-1">
+        <div className="flex w-full flex-col items-center" style={{ gap: heroSectionGap }}>
+          <div className="flex w-full max-w-[820px] flex-col items-center" style={{ gap: heroContentGap }}>
+            <div className="flex w-full flex-col items-center" style={{ gap: "var(--fluid-space-md)" }}>
+              <div
+                className="flex flex-wrap items-center justify-center"
+                style={{ gap: heroBadgeRowGap }}
+              >
                 <div className="inline-flex items-center gap-[7px] rounded-2xl border border-[#cee3ff] px-4 py-1">
                   <OnlineStatusDot />
-                  <span className="text-[14px] font-semibold leading-[1.5] text-[#0b74ff]">
+                  <span
+                    className="font-semibold leading-[1.5] text-[#0b74ff]"
+                    style={{ fontSize: heroChipFontSize }}
+                  >
                     Пробный доступ
                   </span>
                 </div>
                 <div className="inline-flex items-center gap-[3px] rounded-2xl border border-[#cee3ff] px-4 py-1">
-                  <span className="text-[14px] font-semibold leading-[1.5] text-[#0b74ff]">
+                  <span
+                    className="font-semibold leading-[1.5] text-[#0b74ff]"
+                    style={{ fontSize: heroChipFontSize }}
+                  >
                     Не требует карту
                   </span>
                 </div>
               </div>
 
-              <h1 className="text-center font-display text-[34px] font-bold leading-[1.1] tracking-[-0.01em] break-words sm:text-[48px] lg:text-[64px]">
+              <h1
+                className="text-center font-display font-bold leading-[1.1] tracking-[-0.01em] break-words"
+                style={{ fontSize: heroHeadingFontSize }}
+              >
                 Сайт на Webflow
                 <br />
                 не грузится из РФ?
               </h1>
 
-              <p className="text-center text-[16px] leading-[1.5] sm:text-[20px]">
+              <p className="text-center leading-[1.5]" style={{ fontSize: heroBodyFontSize }}>
                 Публикуйте его с Reflow — 100% доступ
                 <br />
                 для пользователей из РФ
@@ -791,9 +810,12 @@ function HeroAlternative({
               </p>
             </div>
 
-            <div className="relative z-[2] flex flex-wrap justify-center gap-2">
+            <div
+              className="relative z-[2] flex flex-wrap justify-center"
+              style={{ gap: "var(--fluid-space-sm)" }}
+            >
               <PressableLink
-                href={SIGN_IN_URL}
+                href={SIGN_UP_URL}
                 trimEffect="primary-loop"
                 className={`rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-5 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-6 sm:text-[18px]`}
               >
@@ -835,32 +857,47 @@ function HeroLegacy({
   buttonHoverScaleDownClass: string;
   onOpenVideo: () => void;
 }) {
+  const heroSectionGap = "clamp(2.5rem, 1.8902rem + 2.504vw, 5rem)";
+  const heroContentGap = "var(--fluid-space-lg)";
+  const heroHeadingFontSize = "clamp(1.5rem, -0.0714rem + 7.8571vw, 4rem)";
+  const heroBodyFontSize = "var(--fluid-text-lg)";
+  const heroChipFontSize = "var(--fluid-text-base)";
+
   return (
     <section className="flex min-h-[calc(100dvh-72px)] items-center justify-center overflow-hidden py-0 sm:min-h-[max(100vh,760px)] sm:pt-[40px] sm:pb-12 lg:pb-16">
       <div className={`${container} w-full`}>
-        <div className="flex w-full flex-col items-center gap-10 lg:gap-20">
-          <div className="flex w-full max-w-[922px] flex-col items-center gap-8">
-            <div className="flex w-full flex-col items-center gap-6">
+        <div className="flex w-full flex-col items-center" style={{ gap: heroSectionGap }}>
+          <div className="flex w-full max-w-[922px] flex-col items-center" style={{ gap: heroContentGap }}>
+            <div className="flex w-full flex-col items-center" style={{ gap: "var(--fluid-space-md)" }}>
               <div className="inline-flex w-fit items-center justify-center rounded-2xl border border-[#98c4ff] px-4 py-1">
-                <span className="text-center text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
+                <span
+                  className="text-center font-semibold leading-[1.5] text-[#0b74ff]"
+                  style={{ fontSize: heroChipFontSize }}
+                >
                   Пробный доступ на 3 дня!
                 </span>
               </div>
-              <h1 className="text-center font-display text-[34px] font-bold leading-[1.1] tracking-[-0.01em] break-words sm:text-[48px] lg:text-[64px]">
+              <h1
+                className="text-center font-display font-bold leading-[1.1] tracking-[-0.01em] break-words"
+                style={{ fontSize: heroHeadingFontSize }}
+              >
                 Сайт на Webflow
                 <br />
                 не&nbsp;грузится из РФ?
               </h1>
-              <p className="text-center text-[16px] leading-[1.5] sm:text-[20px]">
+              <p className="text-center leading-[1.5]" style={{ fontSize: heroBodyFontSize }}>
                 Публикуйте сайт через Reflow — 100% доступ
                 <br />
                 для пользователей из России. <strong>Без VPN и ограничений</strong>
               </p>
             </div>
 
-            <div className="relative z-[2] flex flex-wrap justify-center gap-3 sm:gap-4">
+            <div
+              className="relative z-[2] flex flex-wrap justify-center"
+              style={{ gap: "var(--fluid-space-sm)" }}
+            >
               <PressableLink
-                href={SIGN_IN_URL}
+                href={SIGN_UP_URL}
                 trimEffect="primary-loop"
                 className={`rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-5 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:px-6 sm:text-[18px]`}
               >
@@ -910,6 +947,9 @@ function SecondBlockLayout611({
   buttonHoverScaleDownClass: string;
   easeClass: string;
 }) {
+  const fluidBodyFontSize = "var(--fluid-text-base)";
+  const fluidLeadFontSize = "var(--fluid-text-lg)";
+
   return (
     <section
       id="process"
@@ -922,10 +962,13 @@ function SecondBlockLayout611({
               <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">Проблема</span>
             </div>
             <div className="flex flex-col gap-6">
-              <h2 className="font-display text-[27px] font-bold leading-[1.2] tracking-[-0.01em] break-words sm:text-[37px] lg:text-[48px]">
+              <h2
+                className="font-display font-bold leading-[1.2] tracking-[-0.01em] break-words"
+                style={{ fontSize: "var(--fluid-text-2xl)" }}
+              >
                 Ваш сайт на Webflow в&nbsp;России? — Вам это знакомо...
               </h2>
-              <p className="text-[16px] leading-[1.5] sm:text-[18px] lg:text-[20px]">
+              <p className="leading-[1.5]" style={{ fontSize: fluidLeadFontSize }}>
                 Из-за новых ограничений РКН на технологию Cloudflare все сайты на Webflow
                 открываются нестабильно или вовсе становятся недоступными для пользователей из
                 России.
@@ -943,7 +986,7 @@ function SecondBlockLayout611({
                   <h3 className="font-display text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[27px] lg:text-[32px]">
                     Клиенты жалуются, что «не&nbsp;грузится»
                   </h3>
-                  <p className="text-[16px] leading-[1.5] sm:text-[17px] lg:text-[18px]">
+                  <p className="leading-[1.5]" style={{ fontSize: fluidBodyFontSize }}>
                     Недели разработки, правок и тестов. Вы запустили крутой проект, но
                     пользователи не могут нормально с ним работать. Бизнес теряет трафик
                   </p>
@@ -958,7 +1001,7 @@ function SecondBlockLayout611({
                   <h3 className="font-display text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[27px] lg:text-[32px]">
                     Даже «c&nbsp;VPN» —скорость низкая
                   </h3>
-                  <p className="text-[16px] leading-[1.5] sm:text-[17px] lg:text-[18px]">
+                  <p className="leading-[1.5]" style={{ fontSize: fluidBodyFontSize }}>
                     Даже при использовании VPN и других способов обхода ограничений — низкая
                     скорость и нестабильность портит конверсии
                   </p>
@@ -975,7 +1018,7 @@ function SecondBlockLayout611({
                   <h3 className="font-display text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[27px] lg:text-[32px]">
                     Приходится использовать «костыли»
                   </h3>
-                  <p className="text-[16px] leading-[1.5] sm:text-[17px] lg:text-[18px]">
+                  <p className="leading-[1.5]" style={{ fontSize: fluidBodyFontSize }}>
                     Заказчики выбирают Webflow за простоту в работе с контентом и удобные
                     внутренние инструменты. Они не хотят ничего экспортировать руками и&nbsp;менять
                     платформу
@@ -991,7 +1034,7 @@ function SecondBlockLayout611({
                   </h3>
                   <div className="flex w-full justify-center lg:justify-start">
                     <PressableLink
-                      href={SIGN_IN_URL}
+                      href={SIGN_UP_URL}
                       trimEffect="primary-loop"
                       className={`inline-flex rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
                     >
@@ -1019,15 +1062,21 @@ function SecondBlockStats55({
   buttonHoverScaleDownClass: string;
   easeClass: string;
 }) {
+  const fluidBodyFontSize = "var(--fluid-text-base)";
+  const fluidLeadFontSize = "var(--fluid-text-lg)";
+
   return (
     <section id="process" className="scroll-mt-[92px] overflow-hidden bg-[var(--bg-primary)] py-14 lg:py-[112px]">
       <div className={container}>
         <div className="flex w-full flex-col gap-14 lg:gap-20">
           <div className="grid w-full gap-6 lg:grid-cols-2 lg:gap-10">
-            <h2 className="font-display text-[34px] font-bold leading-[1.25] tracking-[-0.01em] break-words sm:text-[40px]">
+            <h2
+              className="font-display font-bold leading-[1.25] tracking-[-0.01em] break-words"
+              style={{ fontSize: "var(--fluid-text-2xl)" }}
+            >
               В апреле 2025 РКН начал ограничивать Cloudflare
             </h2>
-            <p className="text-[16px] leading-[1.5] sm:text-[20px]">
+            <p className="leading-[1.5]" style={{ fontSize: fluidLeadFontSize }}>
               Сайты с хостингом на Webflow используют Cloudflare и тоже ограничиваются. Спрос на
               разработку Webflow в России сильно упал. При этом Webflow остается удобной
               платформой для сотен тысяч сайтов по всему миру
@@ -1072,7 +1121,7 @@ function SecondBlockStats55({
                   удобно
                 </p>
                 <PressableLink
-                  href={SIGN_IN_URL}
+                  href={SIGN_UP_URL}
                   trimEffect="primary-loop"
                   className={`inline-flex w-fit rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
                 >
@@ -1106,23 +1155,50 @@ function FooterPromoCta({
   buttonDurationClass: string;
   buttonHoverScaleDownClass: string;
 }) {
+  const promoSectionTop = "clamp(3.5rem, 3.0122rem + 2.0031vw, 5.5rem)";
+  const promoCardRadius = "var(--fluid-radius-lg)";
+  const promoCardPaddingX = "clamp(1.5rem, 0.8902rem + 2.504vw, 4rem)";
+  const promoCardPaddingY = "clamp(2.5rem, 2.0122rem + 2.0031vw, 4.5rem)";
+  const promoContentGap = "var(--fluid-space-lg)";
+  const promoTextGap = "var(--fluid-space-md)";
+  const promoHeadingFontSize = "var(--fluid-text-2xl)";
+  const promoBodyFontSize = "var(--fluid-text-lg)";
+
   return (
-    <section className="overflow-hidden bg-[var(--bg-alt)] pb-0 pt-14 lg:pt-16">
+    <section
+      className="overflow-hidden bg-[var(--bg-alt)] pb-0"
+      style={{ paddingTop: promoSectionTop }}
+    >
       <div className={container}>
-        <div className="rounded-[32px] bg-[var(--bg-primary)] px-6 py-10 sm:px-10 sm:py-14 lg:h-[500px] lg:px-16 lg:py-0">
+        <div
+          className="bg-[var(--bg-primary)] lg:h-[500px]"
+          style={{
+            borderRadius: promoCardRadius,
+            paddingLeft: promoCardPaddingX,
+            paddingRight: promoCardPaddingX,
+            paddingTop: promoCardPaddingY,
+            paddingBottom: promoCardPaddingY
+          }}
+        >
           <div className="flex h-full items-center justify-center">
-            <div className="flex w-full max-w-[1040px] flex-col items-center gap-8 text-center">
-              <div className="flex w-full flex-col items-center gap-6">
-                <h2 className="max-w-[1040px] font-display text-[34px] font-bold leading-[1.1] tracking-[-0.01em] break-words sm:text-[44px] lg:text-[51.2px]">
+            <div
+              className="flex w-full max-w-[1040px] flex-col items-center text-center"
+              style={{ gap: promoContentGap }}
+            >
+              <div className="flex w-full flex-col items-center" style={{ gap: promoTextGap }}>
+                <h2
+                  className="max-w-[1040px] font-display font-bold leading-[1.1] tracking-[-0.01em] break-words"
+                  style={{ fontSize: promoHeadingFontSize }}
+                >
                   Продолжайте создавать крутые проекты на&nbsp;Webflow в&nbsp;России
                 </h2>
-                <p className="text-[16px] leading-[1.5] sm:text-[18px] lg:text-[20px]">
-                  А мы поможем. Ваша команда Reflow
+                <p className="leading-[1.5]" style={{ fontSize: promoBodyFontSize }}>
+                  А проблему с ограничениями оставьте&nbsp;нам
                 </p>
               </div>
 
               <PressableLink
-                href={SIGN_IN_URL}
+                href={SIGN_UP_URL}
                 trimEffect="primary-loop"
                 className={`inline-flex rounded-[32px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
               >
@@ -1165,6 +1241,47 @@ export default function Step1Frame({
   const pricingRubDisplay = isAnnualPricing
     ? siteTextValues.pricingAnnualRubDisplay
     : siteTextValues.pricingMonthlyRubDisplay;
+  const processSectionY = "var(--fluid-section-y)";
+  const processSectionGap = "var(--fluid-space-2xl)";
+  const processHeaderGap = "var(--fluid-space-md)";
+  const processCardGap = "var(--fluid-space-lg)";
+  const processCardRadius = "var(--fluid-radius-lg)";
+  const processCardPadding = "var(--fluid-space-lg)";
+  const processCardPaddingBottom = "clamp(2rem, 1.2683rem + 3.005vw, 5rem)";
+  const processHeadingFontSize = "var(--fluid-text-2xl)";
+  const processSubheadingFontSize = "var(--fluid-text-lg)";
+  const processCardTitleFontSize = "clamp(1.4375rem, 1.346rem + 0.3756vw, 1.8125rem)";
+  const processCardBodyFontSize = "var(--fluid-text-base)";
+  const fluidBodyFontSize = "var(--fluid-text-base)";
+  const fluidLeadFontSize = "var(--fluid-text-lg)";
+  const pricingSectionY = "var(--fluid-section-y)";
+  const pricingSectionGap = "var(--fluid-space-xl)";
+  const pricingHeaderGap = "var(--fluid-space-md)";
+  const pricingCardRadius = "var(--fluid-radius-lg)";
+  const pricingCardPadding = "var(--fluid-space-lg)";
+  const pricingHeadingFontSize = "var(--fluid-text-2xl)";
+  const pricingSubheadingFontSize = "var(--fluid-text-lg)";
+  const pricingAmountFontSize = "clamp(2.5rem, 2.2561rem + 1.0016vw, 3.5rem)";
+  const pricingPeriodFontSize = "clamp(1.625rem, 1.4726rem + 0.6259vw, 2.25rem)";
+  const pricingFeatureFontSize = "var(--fluid-text-base)";
+  const pricingFootnoteFontSize = "clamp(0.75rem, 0.7195rem + 0.1252vw, 0.875rem)";
+  const faqSectionTop = "clamp(4.5rem, 3.7683rem + 3.005vw, 7.5rem)";
+  const faqSectionGap = "var(--fluid-space-2xl)";
+  const faqHeaderGap = "var(--fluid-space-xs)";
+  const faqHeadingFontSize = "var(--fluid-text-2xl)";
+  const faqSubheadingFontSize = "var(--fluid-text-lg)";
+  const faqQuestionFontSize = "clamp(1.125rem, 1.064rem + 0.2504vw, 1.375rem)";
+  const faqAnswerFontSize = "var(--fluid-text-base)";
+  const solutionSectionY = "var(--fluid-section-y)";
+  const solutionSectionGap = "var(--fluid-space-2xl)";
+  const solutionHeaderGap = "clamp(0.625rem, 0.564rem + 0.2504vw, 0.875rem)";
+  const solutionGridGap = "var(--fluid-space-lg)";
+  const solutionItemGap = "var(--fluid-space-md)";
+  const solutionContentGap = "var(--fluid-space-sm)";
+  const solutionContentSidePadding = "clamp(1.5rem, 1.1341rem + 1.5025vw, 3rem)";
+  const solutionHeadingFontSize = "var(--fluid-text-2xl)";
+  const solutionItemTitleFontSize = "clamp(1.5rem, 1.378rem + 0.5008vw, 2rem)";
+  const solutionItemBodyFontSize = "var(--fluid-text-base)";
 
   const openVideoModal = (videoUrl = HERO_LOOM_URL) => {
     setActiveVideoEmbedUrl(toLoomEmbedUrl(videoUrl));
@@ -1290,29 +1407,52 @@ export default function Step1Frame({
         />
       )}
 
-      <section className="overflow-hidden bg-[var(--bg-primary)] py-14 lg:py-[112px]">
+      <section
+        className="overflow-hidden bg-[var(--bg-primary)]"
+        style={{ paddingTop: solutionSectionY, paddingBottom: solutionSectionY }}
+      >
         <div className={container}>
-          <div className="flex w-full flex-col gap-14 lg:gap-20">
-            <div className="flex w-full flex-col items-center gap-[10px] text-center">
+          <div className="flex w-full flex-col" style={{ gap: solutionSectionGap }}>
+            <div
+              className="flex w-full flex-col items-center text-center"
+              style={{ gap: solutionHeaderGap }}
+            >
               <div className="inline-flex w-fit rounded-2xl border border-[#98c4ff] px-4 py-1">
                 <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
                   Решение
                 </span>
               </div>
-              <h2 className="w-full font-display whitespace-pre-line text-[30px] font-bold leading-[1.2] tracking-[-0.01em] break-words sm:text-[38px] lg:text-[48px]">
+              <h2
+                className="w-full font-display whitespace-pre-line font-bold leading-[1.2] tracking-[-0.01em] break-words"
+                style={{ fontSize: solutionHeadingFontSize }}
+              >
                 Публикуйтесь через Reflow{"\n"}и забудьте об ограничениях
               </h2>
             </div>
 
-            <div className="grid gap-8 lg:grid-cols-3 lg:gap-8">
+            <div className="grid lg:grid-cols-3" style={{ gap: solutionGridGap }}>
               {solutionItems.map((item) => (
-                <article key={item.title} className="flex flex-col items-center gap-6">
+                <article
+                  key={item.title}
+                  className="flex flex-col items-center"
+                  style={{ gap: solutionItemGap }}
+                >
                   <SolutionIcon slot={item.iconSlot} />
-                  <div className="flex w-full flex-col items-center gap-4 px-[40px] text-center">
-                    <h3 className="font-display text-[24px] font-bold leading-[1.3] tracking-[-0.01em] break-words sm:text-[28px] lg:text-[32px]">
+                  <div
+                    className="flex w-full flex-col items-center text-center"
+                    style={{
+                      gap: solutionContentGap,
+                      paddingLeft: solutionContentSidePadding,
+                      paddingRight: solutionContentSidePadding
+                    }}
+                  >
+                    <h3
+                      className="font-display font-bold leading-[1.3] tracking-[-0.01em] break-words"
+                      style={{ fontSize: solutionItemTitleFontSize }}
+                    >
                       {item.title}
                     </h3>
-                    <p className="text-[16px] leading-[1.5] sm:text-[17px] lg:text-[18px]">
+                    <p className="leading-[1.5]" style={{ fontSize: solutionItemBodyFontSize }}>
                       {item.text}
                     </p>
                   </div>
@@ -1322,7 +1462,7 @@ export default function Step1Frame({
 
             <div className="flex justify-center">
               <PressableLink
-                href={SIGN_IN_URL}
+                href={SIGN_UP_URL}
                 trimEffect="primary-loop"
                 className={`inline-flex rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
               >
@@ -1344,7 +1484,10 @@ export default function Step1Frame({
                       Платформы
                     </span>
                   </div>
-                  <h2 className="font-display text-[42px] font-bold leading-[1.2] tracking-[-0.01em] break-words lg:text-[60px]">
+                  <h2
+                    className="font-display font-bold leading-[1.2] tracking-[-0.01em] break-words"
+                    style={{ fontSize: "var(--fluid-text-2xl)" }}
+                  >
                     Скоро будет больше
                   </h2>
                 </div>
@@ -1364,7 +1507,7 @@ export default function Step1Frame({
                         уже работает
                       </span>
                     </div>
-                    <p className="text-[16px] leading-[1.5] sm:text-[18px]">
+                    <p className="leading-[1.5]" style={{ fontSize: fluidBodyFontSize }}>
                       Публикуйтесь в один клик прямо из интерфейса Webflow
                     </p>
                   </div>
@@ -1375,7 +1518,7 @@ export default function Step1Frame({
                         Cкоро будет
                       </span>
                     </div>
-                    <p className="text-[16px] leading-[1.5] sm:text-[18px]">
+                    <p className="leading-[1.5]" style={{ fontSize: fluidBodyFontSize }}>
                       Сейчас мы разрабатываем решение для Framer и&nbsp;вайбкод-сервисов
                     </p>
                   </div>
@@ -1401,30 +1544,40 @@ export default function Step1Frame({
         </section>
       ) : null}
 
-      <section className="overflow-hidden py-14 lg:py-[112px]">
+      <section
+        className="overflow-hidden"
+        style={{ paddingTop: processSectionY, paddingBottom: processSectionY }}
+      >
         <div className={container}>
-          <div className="flex flex-col items-center gap-20">
-            <div className="flex max-w-[920px] flex-col items-center gap-4 text-center">
+          <div className="flex flex-col items-center" style={{ gap: processSectionGap }}>
+            <div
+              className="flex max-w-[920px] flex-col items-center text-center"
+              style={{ gap: processHeaderGap }}
+            >
               <div className="inline-flex rounded-2xl border border-[#98c4ff] px-4 py-1">
                 <span className="text-[16px] font-semibold leading-[1.5] text-[#0b74ff]">
                   Процесс
                 </span>
               </div>
-              <div className="flex flex-col gap-1">
-                <h2 className="font-display text-[42px] font-bold leading-[1.2] tracking-[-0.01em] break-words lg:text-[60px]">
+              <div className="flex flex-col" style={{ gap: "var(--fluid-space-xs)" }}>
+                <h2
+                  className="font-display font-bold leading-[1.2] tracking-[-0.01em] break-words"
+                  style={{ fontSize: processHeadingFontSize }}
+                >
                   Работайте как удобно
                 </h2>
-                <p className="text-[18px] leading-[1.5] sm:text-[20px]">
+                <p className="leading-[1.5]" style={{ fontSize: processSubheadingFontSize }}>
                   Используйте веб-интерфейс или приложение прямо в Designer Mode
                 </p>
               </div>
             </div>
 
-            <div className="grid w-full gap-8 lg:grid-cols-2">
+            <div className="grid w-full lg:grid-cols-2" style={{ gap: processCardGap }}>
               {processCards.map((card) => (
                 <article
                   key={card.title}
-                  className="flex flex-col overflow-hidden rounded-[32px] bg-[var(--bg-alt)] sm:flex-row"
+                  className="flex flex-col overflow-hidden bg-[var(--bg-alt)] sm:flex-row"
+                  style={{ borderRadius: processCardRadius }}
                 >
                   <div className="flex h-[180px] w-full items-end justify-end overflow-hidden sm:h-auto sm:w-[240px] sm:self-stretch">
                     <FigmaAssetImage
@@ -1442,24 +1595,50 @@ export default function Step1Frame({
                     />
                   </div>
 
-                  <div className="flex flex-1 flex-col justify-center gap-6 px-5 pb-8 pt-5 sm:px-6 sm:pb-20 sm:pt-6">
-                    <div className="flex flex-col gap-2">
-                      <h3 className="text-[23px] font-bold leading-[1.35] tracking-[-0.01em] sm:text-[26px]">
+                  <div
+                    className="flex flex-1 flex-col"
+                    style={{
+                      paddingTop: processCardPadding,
+                      paddingRight: processCardPadding,
+                      paddingBottom: processCardPaddingBottom,
+                      paddingLeft: processCardPadding
+                    }}
+                  >
+                    <div className="flex flex-col" style={{ gap: "var(--fluid-space-xs)" }}>
+                      <h3
+                        className="font-bold leading-[1.35] tracking-[-0.01em]"
+                        style={{ fontSize: processCardTitleFontSize }}
+                      >
                         {card.title}
                       </h3>
-                      <ul className="flex flex-col gap-3 pt-1">
+                      <ul
+                        className="flex flex-col pt-1"
+                        style={{ gap: "var(--fluid-space-sm)" }}
+                      >
                         {card.items.map((item) => (
-                          <li key={item} className="flex items-start gap-3">
+                          <li
+                            key={item}
+                            className="flex items-start"
+                            style={{ gap: "var(--fluid-space-sm)" }}
+                          >
                             <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center text-[14px] text-[#0b74ff]">
                               ✓
                             </span>
-                            <span className="text-[16px] leading-[1.5] sm:text-[18px]">{item}</span>
+                            <span
+                              className="leading-[1.5]"
+                              style={{ fontSize: processCardBodyFontSize }}
+                            >
+                              {item}
+                            </span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     <PressableButton
-                      className="group inline-flex w-fit items-center gap-[8px] bg-transparent p-0 text-left text-[18px] font-medium leading-[1.5]"
+                      className="group mt-auto inline-flex w-fit items-center gap-[8px] bg-transparent p-0 pt-8 text-left font-medium leading-[1.5] sm:pt-4"
+                      style={{
+                        fontSize: processCardBodyFontSize
+                      }}
                       onClick={() => openVideoModal(card.loomUrl)}
                       onTouchEnd={() => openVideoModal(card.loomUrl)}
                     >
@@ -1478,14 +1657,24 @@ export default function Step1Frame({
         </div>
       </section>
 
-      <section id="pricing" className="scroll-mt-[92px] overflow-hidden py-14 lg:py-[112px]">
+      <section
+        id="pricing"
+        className="scroll-mt-[92px] overflow-hidden"
+        style={{ paddingTop: pricingSectionY, paddingBottom: pricingSectionY }}
+      >
         <div className={container}>
-          <div className="flex flex-col items-center gap-10 lg:gap-12">
-            <div className="flex max-w-[768px] flex-col items-center gap-4 text-center">
-              <h2 className="font-display text-[42px] font-bold leading-[1.2] tracking-[-0.01em] break-words lg:text-[60px]">
+          <div className="flex flex-col items-center" style={{ gap: pricingSectionGap }}>
+            <div
+              className="flex max-w-[768px] flex-col items-center text-center"
+              style={{ gap: pricingHeaderGap }}
+            >
+              <h2
+                className="font-display font-bold leading-[1.2] tracking-[-0.01em] break-words"
+                style={{ fontSize: pricingHeadingFontSize }}
+              >
                 Стоимость
               </h2>
-              <p className="text-[18px] leading-[1.5] sm:text-[20px]">
+              <p className="leading-[1.5]" style={{ fontSize: pricingSubheadingFontSize }}>
                 Дешевле, чем CMS-план Webflow.
               </p>
             </div>
@@ -1521,14 +1710,26 @@ export default function Step1Frame({
               </div>
 
               <div className="flex justify-center">
-                <article className="flex w-full max-w-[544px] flex-col gap-6 rounded-[32px] bg-[var(--bg-alt)] p-6 sm:gap-8 sm:p-8">
+                <article
+                  className="flex w-full max-w-[544px] flex-col gap-6 bg-[var(--bg-alt)] sm:gap-8"
+                  style={{
+                    borderRadius: pricingCardRadius,
+                    padding: pricingCardPadding
+                  }}
+                >
                   <div className="flex flex-col items-center gap-8">
                     <div className="flex w-full flex-col items-center gap-2">
                       <div className="flex w-full items-end justify-center gap-[6px]">
-                        <span className="font-display text-[40px] font-bold leading-[1.2] tracking-[-0.01em] sm:text-[48px]">
+                        <span
+                          className="font-display font-bold leading-[1.2] tracking-[-0.01em]"
+                          style={{ fontSize: pricingAmountFontSize }}
+                        >
                           {pricingRubDisplay}
                         </span>
-                        <span className="font-display text-[26px] font-bold leading-[1.3] tracking-[-0.01em] opacity-30 sm:text-[32px]">
+                        <span
+                          className="font-display font-bold leading-[1.3] tracking-[-0.01em] opacity-30"
+                          style={{ fontSize: pricingPeriodFontSize }}
+                        >
                           / мес
                         </span>
                       </div>
@@ -1540,12 +1741,17 @@ export default function Step1Frame({
                           <span className="inline-flex h-6 w-6 items-center justify-center text-[14px] text-[#0b74ff]">
                             ✓
                           </span>
-                          <span className="text-[16px] leading-[1.5] sm:text-[18px]">{item}</span>
+                          <span className="leading-[1.5]" style={{ fontSize: pricingFeatureFontSize }}>
+                            {item}
+                          </span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <p className="text-center text-[12px] leading-[1.45] text-[#01060d99] sm:text-[13px]">
+                  <p
+                    className="text-center leading-[1.45] text-[#01060d99]"
+                    style={{ fontSize: pricingFootnoteFontSize }}
+                  >
                     *Поддержка поиска временно входит в базовый тариф
                   </p>
                 </article>
@@ -1553,7 +1759,7 @@ export default function Step1Frame({
 
               <div className="flex justify-center">
                 <PressableLink
-                  href={SIGN_IN_URL}
+                  href={SIGN_UP_URL}
                   trimEffect="primary-loop"
                   className={`rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-6 py-[10px] text-[16px] font-medium leading-[1.5] text-white transition-transform ${buttonDurationClass} ${easeClass} ${buttonHoverScaleDownClass} sm:text-[18px]`}
                 >
@@ -1565,14 +1771,23 @@ export default function Step1Frame({
         </div>
       </section>
 
-      <section className="overflow-hidden bg-[var(--bg-alt)] pb-0 pt-14 lg:pt-[112px]">
+      <section
+        className="overflow-hidden bg-[var(--bg-alt)] pb-0"
+        style={{ paddingTop: faqSectionTop }}
+      >
         <div className={container}>
-          <div className="flex flex-col items-center gap-20">
-            <div className="flex max-w-[768px] flex-col items-center gap-1 text-center">
-              <h2 className="font-display text-[42px] font-bold leading-[1.2] tracking-[-0.01em] break-words lg:text-[60px]">
+          <div className="flex flex-col items-center" style={{ gap: faqSectionGap }}>
+            <div
+              className="flex max-w-[768px] flex-col items-center text-center"
+              style={{ gap: faqHeaderGap }}
+            >
+              <h2
+                className="font-display font-bold leading-[1.2] tracking-[-0.01em] break-words"
+                style={{ fontSize: faqHeadingFontSize }}
+              >
                 Вопросы
               </h2>
-              <p className="text-[18px] leading-[1.5] sm:text-[20px]">
+              <p className="leading-[1.5]" style={{ fontSize: faqSubheadingFontSize }}>
                 Ответы на распространённые вопросы о сервисе и его возможностях
               </p>
             </div>
@@ -1588,7 +1803,10 @@ export default function Step1Frame({
                       onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
                       className={`flex w-full items-center gap-4 text-left transition-colors ${faqDurationClass} ${easeClass} ${UI_MOTION.faq.itemPadding} ${UI_MOTION.faq.hoverBgClass} ${UI_MOTION.faq.hoverRadiusClass} sm:gap-6`}
                     >
-                      <p className="min-w-0 flex-1 text-[18px] font-bold leading-[1.5] break-words sm:text-[20px]">
+                      <p
+                        className="min-w-0 flex-1 font-bold leading-[1.5] break-words"
+                        style={{ fontSize: faqQuestionFontSize }}
+                      >
                         {item.q}
                       </p>
                       <span
@@ -1607,7 +1825,10 @@ export default function Step1Frame({
                     >
                       <div className="min-h-0">
                         <div className={`${UI_MOTION.faq.itemPadding} pt-0`}>
-                          <p className="text-[16px] leading-[1.5] break-words sm:text-[18px]">
+                          <p
+                            className="leading-[1.5] break-words"
+                            style={{ fontSize: faqAnswerFontSize }}
+                          >
                             {item.a}
                           </p>
                         </div>
