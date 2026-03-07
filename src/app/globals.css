@@ -37,3 +37,113 @@
     font-family: var(--font-unbounded), var(--font-inter), system-ui, sans-serif;
   }
 }
+
+@keyframes online-dot-blink {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  40% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes loom-trim-pass {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes cta-press-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cta-press-loader-trim {
+  0% {
+    stroke-dasharray: 0 100;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 72 100;
+    stroke-dashoffset: -18;
+  }
+  100% {
+    stroke-dasharray: 0 100;
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes cta-loop-trim-path {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@layer utilities {
+  .online-dot-blink {
+    animation-name: online-dot-blink;
+    animation-duration: 1.7s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    transform-origin: center;
+  }
+
+  .loom-trim-pass-loader {
+    animation-name: loom-trim-pass;
+    animation-duration: 3.6s;
+    animation-timing-function: cubic-bezier(0.45, 0.05, 0.22, 0.98);
+    animation-iteration-count: infinite;
+  }
+
+  .cta-press-loader-spin {
+    animation-name: cta-press-loader-spin;
+    animation-duration: 1.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: center;
+  }
+
+  .cta-press-loader-trim {
+    animation-name: cta-press-loader-trim;
+    animation-duration: 1.5s;
+    animation-timing-function: cubic-bezier(0.45, 0.05, 0.22, 0.98);
+    animation-iteration-count: infinite;
+  }
+
+  .cta-loop-trim-path {
+    animation-name: cta-loop-trim-path;
+    animation-duration: 3.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .online-dot-blink {
+    animation: none;
+  }
+
+  .loom-trim-pass-loader {
+    animation: none;
+  }
+
+  .cta-press-loader-spin,
+  .cta-press-loader-trim,
+  .cta-loop-trim-path {
+    animation: none;
+  }
+}

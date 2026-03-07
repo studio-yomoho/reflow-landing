@@ -18,7 +18,7 @@ const unbounded = Unbounded({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reflowapp.pro";
 const OG_IMAGE_PATH = "/figma/og.jpg?v=20260304-1";
-const SITE_TITLE = "Reflow — Webflow без блокировок в России";
+const SITE_TITLE = "Reflow — Webflow без ограничений в России";
 const SITE_DESCRIPTION =
   "Сервис публикации ваших Webflow сайтов в российский контур. 100% доступность, лучшая скорость, без VPN.";
 

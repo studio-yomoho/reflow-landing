@@ -2,6 +2,8 @@ import { applyRussianNbspToNode } from "../../lib/typography";
 import { UI_MOTION } from "../../config/motion";
 import type { SiteSocialLinks } from "../../lib/placeholders";
 import BrandLogo from "./BrandLogo";
+import { PressableLink } from "./PressableCta";
+import TelegramIcon from "./TelegramIcon";
 
 type SiteFooterProps = {
   brandName?: string;
@@ -13,20 +15,8 @@ type SiteFooterProps = {
   companyKpp?: string;
   privacyLink?: string;
   agreementLink?: string;
+  topPaddingClass?: string;
 };
-
-function TelegramIcon() {
-  return (
-    <svg
-      viewBox="3628 46 76 60"
-      preserveAspectRatio="xMidYMid meet"
-      className="h-4 w-4 shrink-0"
-      aria-hidden
-    >
-      <path d="m3636.97 71.3238c18.66-8.128 31.1-13.487 37.32-16.076 17.78-7.393 21.47-8.677 23.88-8.72.53-.009 1.71.122 2.48.745.65.525.82 1.235.91 1.733.08.498.19 1.633.11 2.519-.97 10.12-5.14 34.678-7.26 46.013-.89 4.7962-2.66 6.4042-4.37 6.5612-3.72.342-6.54-2.456-10.14-4.8152-5.63-3.693-8.81-5.991-14.28-9.594-6.32-4.164-2.22-6.453 1.38-10.193.94-.979 17.32-15.874 17.63-17.225.04-.169.08-.799-.29-1.131-.38-.333-.93-.219-1.33-.129-.56.128-9.56 6.076-27 17.843-2.55 1.754-4.86 2.609-6.94 2.564-2.28-.049-6.68-1.292-9.94-2.354-4.01-1.303-7.2-1.992-6.92-4.205.14-1.152 1.73-2.331 4.76-3.536z" fill="#fff" />
-    </svg>
-  );
-}
 
 export default function SiteFooter({
   brandName = "Reflow",
@@ -37,7 +27,8 @@ export default function SiteFooter({
   companyInn = "7714457395",
   companyKpp = "771401001",
   privacyLink = "/legal/privacy",
-  agreementLink = "/legal"
+  agreementLink = "/legal",
+  topPaddingClass = "pt-20 lg:pt-[80px]"
 }: SiteFooterProps) {
   const hasBrandName = typeof brandName === "string" && brandName.trim().length > 0;
   const hasSupportPhone = typeof supportPhone === "string" && supportPhone.trim().length > 0;
@@ -58,7 +49,7 @@ export default function SiteFooter({
     `text-[16px] leading-[1.5] underline ${UI_MOTION.link.footerUnderlineColorClass} ${UI_MOTION.link.footerUnderlineThicknessClass} underline-offset-4 ${UI_MOTION.link.transitionClass} ${durationMediumClass} ${easeClass} hover:text-[#0b74ff] ${UI_MOTION.link.footerHoverUnderlineColorClass}`;
 
   const content = (
-    <footer className="overflow-hidden bg-[var(--bg-alt)] pb-20 pt-20 lg:pb-[80px] lg:pt-[80px]">
+    <footer className={`overflow-hidden bg-[var(--bg-alt)] pb-20 lg:pb-[80px] ${topPaddingClass}`}>
       <div className={container}>
         <div className="flex flex-col gap-8">
           <div className="rounded-[32px] bg-[var(--bg-primary)] p-8 sm:p-12">
@@ -102,15 +93,15 @@ export default function SiteFooter({
 
                 {hasTelegramLink && (
                   <div className="pt-1">
-                    <a
+                    <PressableLink
                       href={telegramLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`inline-flex items-center gap-2 rounded-[50px] border border-[#0b74ff] bg-[#0b74ff] px-5 py-2 text-[16px] font-medium leading-[1.5] text-white transition-transform ${durationMediumClass} ${easeClass} hover:scale-[0.98]`}
                     >
                       <TelegramIcon />
-                      <span>Мы в Telegram</span>
-                    </a>
+                      <span>Официальный канал</span>
+                    </PressableLink>
                   </div>
                 )}
               </div>
