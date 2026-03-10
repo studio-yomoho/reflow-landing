@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-03-10T08:34:09.648Z",
+  "assets": {
+    "ogImage": {
+      "source": "content/og.jpg",
+      "target": "public/figma/og.jpg",
+      "publicPath": "/figma/og.jpg",
+      "version": "ad4c8fde841e",
+      "urlWithVersion": "/figma/og.jpg?v=ad4c8fde841e"
+    }
+  }
+}

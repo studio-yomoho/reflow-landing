@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "bash ./scripts/dev-with-tunnel.sh",
     "dev:figma": "sh -c 'ENABLE_FIGMA_WATCH=1 bash ./scripts/dev-with-tunnel.sh'",
-    "dev:local": "sh -c 'NEXT_DISABLE_WEBPACK_CACHE=${NEXT_DISABLE_WEBPACK_CACHE:-1} NEXT_DIST_DIR=${NEXT_DIST_DIR:-.next-dev} next dev -p ${APP_PORT:-3001}'",
+    "dev:local": "sh -c 'npm run -s assets:sync && NEXT_DISABLE_WEBPACK_CACHE=${NEXT_DISABLE_WEBPACK_CACHE:-1} NEXT_DIST_DIR=${NEXT_DIST_DIR:-.next-dev} next dev -p ${APP_PORT:-3001}'",
     "session:menu": "bash ./scripts/git-session.sh menu",
     "session:start": "bash ./scripts/git-session.sh start",
     "session:sync": "bash ./scripts/git-session.sh sync",
@@ -20,11 +20,13 @@
     "tunnel": "node ./scripts/tunnel-localhost-run.mjs",
     "figma:sync": "node ./scripts/figma-sync.mjs",
     "figma:watch": "node ./scripts/figma-watch.mjs",
+    "assets:sync": "node ./scripts/sync-static-assets.mjs",
+    "assets:watch": "node ./scripts/watch-static-assets.mjs",
     "validate:assets": "node ./scripts/validate-static-assets.mjs",
     "vercel:link": "npx --yes vercel link",
     "deploy:preview": "npx --yes vercel deploy",
     "deploy:prod": "npx --yes vercel deploy --prod",
-    "build": "npm run -s validate:assets && sh -c 'NEXT_DIST_DIR=${NEXT_DIST_DIR:-.next-build} next build'",
+    "build": "npm run -s assets:sync && npm run -s validate:assets && sh -c 'NEXT_DIST_DIR=${NEXT_DIST_DIR:-.next-build} next build'",
     "start": "sh -c 'NEXT_DIST_DIR=${NEXT_DIST_DIR:-.next-build} next start -p ${APP_PORT:-3001}'",
     "lint": "next lint"
   },

@@ -16,11 +16,17 @@ DEV_DIST_DIR="${NEXT_DIST_DIR:-.next-dev}"
 DEV_PID=""
 TUNNEL_PID=""
 FIGMA_PID=""
+ASSETS_PID=""
 LAST_DEV_RECOVERY_TS=0
 APP_5XX_STREAK=0
 LAST_HTTP_HEALTHCHECK_TS=0
 
 cleanup() {
+  if [[ -n "${ASSETS_PID}" ]] && kill -0 "${ASSETS_PID}" 2>/dev/null; then
+    kill "${ASSETS_PID}" 2>/dev/null || true
+    wait "${ASSETS_PID}" 2>/dev/null || true
+  fi
+
   if [[ -n "${FIGMA_PID}" ]] && kill -0 "${FIGMA_PID}" 2>/dev/null; then
     kill "${FIGMA_PID}" 2>/dev/null || true
     wait "${FIGMA_PID}" 2>/dev/null || true
@@ -49,6 +55,12 @@ start_figma_watch() {
   echo "[dev+tunnel] Starting figma watcher (interval ${FIGMA_WATCH_INTERVAL_SECONDS:-8}s)..."
   npm run figma:watch &
   FIGMA_PID=$!
+}
+
+start_assets_watch() {
+  echo "[dev+tunnel] Starting static assets watcher..."
+  npm run assets:watch &
+  ASSETS_PID=$!
 }
 
 wait_for_app_ready() {
@@ -105,6 +117,15 @@ DEV_PID=$!
 echo "[dev+tunnel] Waiting for app to be ready..."
 if ! wait_for_app_ready; then
   echo "[dev+tunnel] App did not become ready in ${TUNNEL_TIMEOUT_SECONDS}s."
+  exit 1
+fi
+
+start_assets_watch
+sleep 1
+
+if ! kill -0 "${ASSETS_PID}" 2>/dev/null; then
+  echo "[dev+tunnel] Static assets watcher failed to start."
+  wait "${ASSETS_PID}" || true
   exit 1
 fi
 
@@ -176,6 +197,18 @@ while true; do
     echo "[dev+tunnel] Figma watcher stopped. Restarting in 2s..."
     sleep 2
     start_figma_watch
+    continue
+  fi
+
+  if [[ -n "${ASSETS_PID}" ]] && ! kill -0 "${ASSETS_PID}" 2>/dev/null; then
+    wait "${ASSETS_PID}" || true
+    if ! kill -0 "${DEV_PID}" 2>/dev/null; then
+      echo "[dev+tunnel] Static assets watcher stopped after dev server exited."
+      exit 1
+    fi
+    echo "[dev+tunnel] Static assets watcher stopped. Restarting in 2s..."
+    sleep 2
+    start_assets_watch
     continue
   fi
 
