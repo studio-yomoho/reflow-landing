@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter, Unbounded } from "next/font/google";
 import type { Metadata } from "next";
+import staticAssetsManifest from "./generated/static-assets-manifest.json";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -17,7 +18,8 @@ const unbounded = Unbounded({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.reflowapp.pro";
-const OG_IMAGE_PATH = "/figma/og.jpg?v=20260304-1";
+const OG_IMAGE_PATH =
+  staticAssetsManifest.assets?.ogImage?.urlWithVersion ?? "/figma/og.jpg";
 const SITE_TITLE = "Reflow — Webflow без ограничений в России";
 const SITE_DESCRIPTION =
   "Сервис публикации ваших Webflow сайтов в российский контур. 100% доступность, лучшая скорость, без VPN.";

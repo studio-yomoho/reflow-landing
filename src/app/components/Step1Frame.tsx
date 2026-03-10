@@ -117,7 +117,17 @@ const solutionItems = [
 ];
 const SIGN_UP_URL = "https://www.reflowapp.pro/auth/sign-up";
 const SUPPORT_TELEGRAM_URL = "https://t.me/+Eunyahnhp8UzMGQy";
-const HERO_LOOM_URL = "https://www.loom.com/share/816fde410f384671892cabec285b7cf6";
+const DEFAULT_VIDEO_ASPECT_RATIO_PADDING = "64.90384615384616%";
+type VideoModalSource = {
+  embedUrl: string;
+  posterUrl?: string;
+  aspectRatioPadding?: string;
+};
+const HERO_KINESCOPE_SOURCE: VideoModalSource = {
+  embedUrl: "https://kinescope.io/embed/swuxy3ZKg7Skd8QxoTkH47?autoplay=1",
+  posterUrl: "https://kinescope.io/swuxy3ZKg7Skd8QxoTkH47/poster.webp",
+  aspectRatioPadding: "67.8391959798995%"
+};
 const SHOW_PLATFORMS_BLOCK = false;
 const HERO_STATUS_DOT_PATH =
   "M3.05566 6.11133c-0.42188 0-0.81738-0.08008-1.18652-0.24024-0.36914-0.1582-0.69434-0.37793-0.97559-0.65918-0.2793-0.2793-0.49805-0.60254-0.65625-0.96972-0.1582-0.36914-0.2373-0.76465-0.2373-1.18653 0-0.42188 0.0791-0.81738 0.2373-1.18652 0.1582-0.36914 0.37695-0.69336 0.65625-0.97266 0.28125-0.28125 0.60645-0.50098 0.97559-0.65918 0.36914-0.1582 0.76465-0.2373 1.18652-0.2373 0.42188 0 0.81738 0.0791 1.18653 0.2373 0.36914 0.1582 0.69336 0.37793 0.97265 0.65918 0.2793 0.2793 0.49805 0.60352 0.65625 0.97266 0.16016 0.36914 0.24023 0.76465 0.24024 1.18652 0 0.42188-0.08008 0.81738-0.24024 1.18653-0.1582 0.36719-0.37695 0.69043-0.65625 0.96972-0.2793 0.28125-0.60352 0.50098-0.97265 0.65918-0.36914 0.16016-0.76465 0.24023-1.18653 0.24024z";
@@ -145,9 +155,21 @@ function toLoomEmbedUrl(url: string) {
   return normalized;
 }
 
+function toVideoModalSource(source: string | VideoModalSource): VideoModalSource {
+  if (typeof source !== "string") {
+    return {
+      aspectRatioPadding: DEFAULT_VIDEO_ASPECT_RATIO_PADDING,
+      ...source
+    };
+  }
+
+  return {
+    embedUrl: toLoomEmbedUrl(source),
+    aspectRatioPadding: DEFAULT_VIDEO_ASPECT_RATIO_PADDING
+  };
+}
+
 const WEBFLOW_LOGO_SCALE = 0.08830311894416809;
-const PROCESS_DEMO_ICON_PATH =
-  "M347.33002 553.73999l196.97998-125.89001c8.28668-5.38001 12.42999-12.61002 12.42999-21.69001 0-9.07333-4.14331-16.26333-12.42999-21.57l-196.97998-125.89002c-8.29334-5.81334-16.99668-6.24666-26.11002-1.29999-9.11334 4.95334-13.66998 12.59665-13.66998 22.93l0 251.54004c0 10.56665 4.55664 18.30664 13.66998 23.21997 9.11334 4.91333 17.81668 4.46337 26.11002-1.34998z m58.67999 258.45996c-55.64001 0-108.15335-10.62665-157.54001-31.88-49.38-21.25336-92.50999-50.31995-129.38999-87.19995-36.88-36.88001-65.94667-80-87.2-129.35999-21.25333-49.35999-31.88-101.86337-31.88001-157.51004 0-56.30667 10.62667-109.15335 31.88001-158.54001 21.25333-49.38 50.30666-92.34663 87.15999-128.89996 36.85334-36.56 79.96667-65.50001 129.34-86.82001 49.37333-21.32667 101.89002-31.98999 157.55002-31.98999 56.32001 0 109.18326 10.65664 158.58994 31.96997 49.40002 21.31333 92.37005 50.23669 128.91003 86.77002 36.54669 36.53333 65.47663 79.49335 86.78998 128.88001 21.32001 49.38665 31.97998 102.25329 31.97998 158.59997 0 55.66666-10.66333 108.19-31.98999 157.57001-21.32001 49.38-50.26001 92.5-86.82001 129.35998-36.55334 36.85999-79.51001 65.91663-128.86999 87.16999-49.35999 21.25335-102.19663 31.88-158.50995 31.88z m-0.03-68.13c94.02667 0 173.84329-32.91669 239.44998-98.75 65.59998-65.83997 98.39997-145.53998 98.39997-239.09998 0-94.02667-32.79999-173.84335-98.39997-239.45001-65.60669-65.6-145.46332-98.39996-239.56997-98.39997-93.44001 0-173.09002 32.79997-238.95002 98.39997-65.85333 65.60666-98.78 145.46335-98.78 239.57001 0 93.44 32.91667 173.09002 98.75 238.95001 65.84 65.85333 145.54001 98.77997 239.10001 98.77997z";
 const WEBFLOW_LOGO_PATHS = [
   {
     d: "M288.60599 0l-92.09099 180.02692-86.499 0 38.54-74.611-1.729 0c-31.795 41.27399-79.2339 68.445-146.827 74.611l0-73.578c0 0 43.24091-2.554 68.661-29.2799l-68.661 0 0-77.1676 77.1676 0 0 63.4692 1.732-0.0071 31.5334-63.4621 58.36 0 0 63.0668 1.73199-0.0028 32.71601-63.06542 85.36499 0z",
@@ -474,7 +496,7 @@ function CloseIcon() {
   );
 }
 
-function LoomTrimPassLoader() {
+function VideoTrimPassLoader() {
   const loaderMotion = UI_MOTION.videoModalLoader;
   const frameRadius = 28;
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -1136,14 +1158,6 @@ function SecondBlockStats55({
   );
 }
 
-function ProcessDemoIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-6 w-6 shrink-0" fill="none" aria-hidden>
-      <path d={PROCESS_DEMO_ICON_PATH} fill="#0f73ff" transform="scale(0.0295496)" />
-    </svg>
-  );
-}
-
 function FooterPromoCta({
   container,
   easeClass,
@@ -1232,7 +1246,9 @@ export default function Step1Frame({
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isVideoMounted, setIsVideoMounted] = useState(false);
   const [isVideoLoading, setIsVideoLoading] = useState(false);
-  const [activeVideoEmbedUrl, setActiveVideoEmbedUrl] = useState(toLoomEmbedUrl(HERO_LOOM_URL));
+  const [activeVideoSource, setActiveVideoSource] = useState<VideoModalSource>(() =>
+    toVideoModalSource(HERO_KINESCOPE_SOURCE)
+  );
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [pricingPeriod, setPricingPeriod] = useState<"monthly" | "annual">("monthly");
   const modalTransitionMs = 320;
@@ -1283,8 +1299,8 @@ export default function Step1Frame({
   const solutionItemTitleFontSize = "clamp(1.5rem, 1.378rem + 0.5008vw, 2rem)";
   const solutionItemBodyFontSize = "var(--fluid-text-base)";
 
-  const openVideoModal = (videoUrl = HERO_LOOM_URL) => {
-    setActiveVideoEmbedUrl(toLoomEmbedUrl(videoUrl));
+  const openVideoModal = (videoSource: string | VideoModalSource = HERO_KINESCOPE_SOURCE) => {
+    setActiveVideoSource(toVideoModalSource(videoSource));
     setIsVideoLoading(true);
     setIsVideoMounted(true);
     requestAnimationFrame(() => setIsVideoOpen(true));
@@ -1353,10 +1369,23 @@ export default function Step1Frame({
               </button>
             </div>
             <div className="relative overflow-hidden rounded-[28px]">
-              {isVideoLoading && <LoomTrimPassLoader />}
-              <div className="relative h-0 pb-[64.90384615384616%]">
+              {isVideoLoading && <VideoTrimPassLoader />}
+              <div
+                className="relative h-0"
+                style={{ paddingBottom: activeVideoSource.aspectRatioPadding ?? DEFAULT_VIDEO_ASPECT_RATIO_PADDING }}
+              >
+                {activeVideoSource.posterUrl && (
+                  <img
+                    src={activeVideoSource.posterUrl}
+                    alt=""
+                    aria-hidden
+                    className={`absolute left-0 top-0 h-full w-full object-cover transition-opacity ${durationMediumClass} ${easeClass} ${isVideoLoading ? "opacity-100" : "opacity-0"}`}
+                    loading="eager"
+                    decoding="async"
+                  />
+                )}
                 <iframe
-                  src={activeVideoEmbedUrl}
+                  src={activeVideoSource.embedUrl}
                   frameBorder="0"
                   allowFullScreen
                   allow="fullscreen; picture-in-picture"
@@ -1377,7 +1406,7 @@ export default function Step1Frame({
           buttonDurationClass={buttonDurationClass}
           buttonHoverScaleDownClass={buttonHoverScaleDownClass}
           heroFeatureItems={heroFeatureItems}
-          onOpenVideo={() => openVideoModal(HERO_LOOM_URL)}
+          onOpenVideo={() => openVideoModal(HERO_KINESCOPE_SOURCE)}
         />
       ) : (
         <HeroLegacy
@@ -1387,7 +1416,7 @@ export default function Step1Frame({
           durationSlowClass={durationSlowClass}
           buttonDurationClass={buttonDurationClass}
           buttonHoverScaleDownClass={buttonHoverScaleDownClass}
-          onOpenVideo={() => openVideoModal(HERO_LOOM_URL)}
+          onOpenVideo={() => openVideoModal(HERO_KINESCOPE_SOURCE)}
         />
       )}
 
@@ -1634,21 +1663,6 @@ export default function Step1Frame({
                         ))}
                       </ul>
                     </div>
-                    <PressableButton
-                      className="group mt-auto inline-flex w-fit items-center gap-[8px] bg-transparent p-0 pt-8 text-left font-medium leading-[1.5] sm:pt-4"
-                      style={{
-                        fontSize: processCardBodyFontSize
-                      }}
-                      onClick={() => openVideoModal(card.loomUrl)}
-                      onTouchEnd={() => openVideoModal(card.loomUrl)}
-                    >
-                      <span
-                        className={`text-[#1172ff] transition-colors ${durationMediumClass} ${easeClass} group-hover:text-[#0b62dc]`}
-                      >
-                        Смотреть демку
-                      </span>
-                      <ProcessDemoIcon />
-                    </PressableButton>
                   </div>
                 </article>
               ))}
