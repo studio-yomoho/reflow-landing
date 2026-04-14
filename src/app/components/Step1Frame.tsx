@@ -1250,13 +1250,9 @@ export default function Step1Frame({
     toVideoModalSource(HERO_KINESCOPE_SOURCE)
   );
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
-  const [pricingPeriod, setPricingPeriod] = useState<"monthly" | "annual">("monthly");
   const modalTransitionMs = 320;
   const useAlternativeHero = ACTIVE_HERO_VARIANT === "alternative";
-  const isAnnualPricing = pricingPeriod === "annual";
-  const pricingRubDisplay = isAnnualPricing
-    ? siteTextValues.pricingAnnualRubDisplay
-    : siteTextValues.pricingMonthlyRubDisplay;
+  const pricingRubDisplay = siteTextValues.pricingMonthlyRubDisplay;
   const processSectionY = "var(--fluid-section-y)";
   const processSectionGap = "var(--fluid-space-2xl)";
   const processHeaderGap = "var(--fluid-space-md)";
@@ -1694,35 +1690,6 @@ export default function Step1Frame({
             </div>
 
             <div className="flex w-full flex-col gap-8">
-              <div className="flex justify-center">
-                <div className="inline-flex items-center rounded-[50px] border border-[#98c4ff] bg-[var(--bg-alt)] p-1">
-                  <button
-                    type="button"
-                    onClick={() => setPricingPeriod("monthly")}
-                    className={`rounded-[50px] px-4 py-2 text-[16px] font-semibold leading-[1.5] transition-colors ${durationMediumClass} ${easeClass} ${
-                      !isAnnualPricing
-                        ? "bg-[#0b74ff] text-white"
-                        : "bg-transparent text-[#0b74ff] hover:bg-[#01060d0d]"
-                    }`}
-                    aria-pressed={!isAnnualPricing}
-                  >
-                    Месяц
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setPricingPeriod("annual")}
-                    className={`rounded-[50px] px-4 py-2 text-[16px] font-semibold leading-[1.5] transition-colors ${durationMediumClass} ${easeClass} ${
-                      isAnnualPricing
-                        ? "bg-[#0b74ff] text-white"
-                        : "bg-transparent text-[#0b74ff] hover:bg-[#01060d0d]"
-                    }`}
-                    aria-pressed={isAnnualPricing}
-                  >
-                    Год -{siteTextValues.pricingAnnualDiscountPercent}%
-                  </button>
-                </div>
-              </div>
-
               <div className="flex justify-center">
                 <article
                   className="flex w-full max-w-[544px] flex-col gap-6 bg-[var(--bg-alt)] sm:gap-8"
